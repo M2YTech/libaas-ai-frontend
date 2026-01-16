@@ -72,7 +72,7 @@ export default function MyWardrobePage() {
         setUserId(userIdFromStorage);
         
         // Fetch wardrobe items
-        const response = await fetch(`http://localhost:8000/wardrobe/items/${userIdFromStorage}`);
+        const response = await fetch(`https://web-production-9463.up.railway.app/wardrobe/items/${userIdFromStorage}`);
         
         if (!response.ok) {
           throw new Error("Failed to fetch wardrobe items");
@@ -105,7 +105,7 @@ export default function MyWardrobePage() {
         formData.append("file", file);
         formData.append("user_id", userId);
         
-        const response = await fetch("http://localhost:8000/wardrobe/upload", {
+        const response = await fetch("https://web-production-9463.up.railway.app/wardrobe/upload", {
           method: "POST",
           body: formData,
         });
@@ -138,7 +138,7 @@ export default function MyWardrobePage() {
     if (!userId || !confirm("Are you sure you want to delete this item?")) return;
     
     try {
-      const response = await fetch(`http://localhost:8000/wardrobe/items/${itemId}?user_id=${userId}`, {
+      const response = await fetch(`https://web-production-9463.up.railway.app/wardrobe/items/${itemId}?user_id=${userId}`, {
         method: "DELETE",
       });
       

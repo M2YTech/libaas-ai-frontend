@@ -55,7 +55,7 @@ function ProfileContent() {
         setUserId(currentUserId);
 
         // Fetch profile data from backend
-        const response = await fetch(`http://127.0.0.1:8000/auth/profile/${currentUserId}`, {
+        const response = await fetch(`https://web-production-9463.up.railway.app/auth/profile/${currentUserId}`, {
           cache: 'no-store'
         });
 
@@ -212,7 +212,7 @@ function ProfileContent() {
       formData.append('file', photoFile);
       formData.append('user_id', userId);
 
-      const response = await fetch('http://127.0.0.1:8000/auth/update-profile-photo', {
+      const response = await fetch('https://web-production-9463.up.railway.app/auth/update-profile-photo', {
         method: 'POST',
         body: formData,
       });

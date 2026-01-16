@@ -133,7 +133,7 @@ export default function GetStartedPage() {
       formData.append("theme", form.theme);
       formData.append("num_looks", form.numberOfOutfits.toString());
 
-      const response = await fetch("http://127.0.0.1:8000/wardrobe/generate-outfit-recommendations", {
+      const response = await fetch("https://web-production-9463.up.railway.app/wardrobe/generate-outfit-recommendations", {
         method: "POST",
         body: formData,
       });

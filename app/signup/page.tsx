@@ -4,7 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-// const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+// Use proxy to avoid CORS issues in development
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? "https://web-production-9463.up.railway.app"
+  : "/api";
 
 interface ClipInsights {
   top_label: string;
@@ -171,34 +174,34 @@ export default function SignUpPage() {
       }
 
       // Send request to backend
-      // const response = await fetch(`${API_BASE_URL}/auth/signup`, {
-      //   method: "POST",
-      //   body: formData,
-      // });
+      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+        method: "POST",
+        body: formData,
+      });
 
-      // const data = await response.json();
+      const data = await response.json();
 
-      // if (!response.ok) {
-      //   throw new Error(data.detail || "Signup failed");
-      // }
+      if (!response.ok) {
+        throw new Error(data.detail || "Signup failed");
+      }
 
       // Success!
-      // const result = data as SignupResponse;
-      // setSuccessMessage(result.message);
+      const result = data as SignupResponse;
+      setSuccessMessage(result.message || "Account created successfully!");
       
-      // if (result.clip_insights) {
-      //   setClipInsights(result.clip_insights);
-      // }
+      if (result.clip_insights) {
+        setClipInsights(result.clip_insights);
+      }
 
-      // Redirect to signin after 2 seconds
-      // setTimeout(() => {
-      //   router.push("/signin");
-      // }, 2000);
+      // Redirect to signin after 3 seconds
+      setTimeout(() => {
+        router.push("/signin");
+      }, 3000);
 
     } catch (err) {
       console.error("Signup error:", err);
       if (err instanceof TypeError && err.message === "Failed to fetch") {
-        setError("Unable to connect to server. Please make sure the backend is running on http://localhost:8000");
+        setError("Unable to connect to server. Please check your internet connection and try again.");
       } else {
         setError(err instanceof Error ? err.message : "An error occurred during signup");
       }
@@ -206,6 +209,7 @@ export default function SignUpPage() {
       setIsLoading(false);
     }
   };
+  console.log("🚀 ~ handleSubmit ~ handleSubmit:", handleSubmit)
 
   return (
     <div className="min-h-screen relative overflow-hidden py-8 px-4 sm:py-12 sm:px-6 lg:px-8">

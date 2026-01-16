@@ -25,7 +25,7 @@ export default function Navbar() {
         }
 
         // Fetch latest profile data
-        fetch(`http://127.0.0.1:8000/auth/profile/${userId}`)
+        fetch(`https://web-production-9463.up.railway.app/auth/profile/${userId}`)
           .then((res) => {
             if (res.ok) return res.json();
             throw new Error("Failed to fetch profile");

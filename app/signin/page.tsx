@@ -19,7 +19,12 @@ export default function SignInPage() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8000/auth/login", {
+      // Use proxy to avoid CORS issues
+      const API_URL = process.env.NODE_ENV === 'production'
+        ? "https://web-production-9463.up.railway.app"
+        : "/api";
+      
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
