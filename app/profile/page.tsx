@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import { API_ENDPOINTS } from "../config/api";
 
 function ProfileContent() {
   const searchParams = useSearchParams();
@@ -14,6 +15,7 @@ function ProfileContent() {
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [isViewingPhoto, setIsViewingPhoto] = useState(false);
+  const [isSavingProfile, setIsSavingProfile] = useState(false);
 
   // Backend state
   const [loading, setLoading] = useState(true);
@@ -55,7 +57,7 @@ function ProfileContent() {
         setUserId(currentUserId);
 
         // Fetch profile data from backend
-        const response = await fetch(`https://web-production-9463.up.railway.app/auth/profile/${currentUserId}`, {
+        const response = await fetch(API_ENDPOINTS.auth.profile(currentUserId), {
           cache: 'no-store'
         });
 
@@ -114,11 +116,11 @@ function ProfileContent() {
   ];
 
   const bodyShapeOptions = [
-    { id: "hourglass", name: "Hourglass"},
-    { id: "pear", name: "Pear"},
-    { id: "rectangle", name: "Rectangle"},
-    { id: "inverted", name: "Inverted Triangle"},
-    { id: "round", name: "Round"},
+    { id: "hourglass", name: "Hourglass" },
+    { id: "pear", name: "Pear" },
+    { id: "rectangle", name: "Rectangle" },
+    { id: "inverted", name: "Inverted Triangle" },
+    { id: "round", name: "Round" },
   ];
 
   const skinToneOptions = [
@@ -168,11 +170,11 @@ function ProfileContent() {
   ];
 
   const sidebarItems = [
-    { id: "overview", label: "Overview"},
-    { id: "personal-info", label: "Personal Info"},
-    { id: "privacy", label: "Privacy & Settings"},
-    { id: "ai-insights", label: "AI Style Insights"},
-    { id: "quick-actions", label: "Quick Actions"},
+    { id: "overview", label: "Overview" },
+    { id: "personal-info", label: "Personal Info" },
+    { id: "privacy", label: "Privacy & Settings" },
+    { id: "ai-insights", label: "AI Style Insights" },
+    { id: "quick-actions", label: "Quick Actions" },
   ];
 
   const handleSectionChange = (sectionId: string) => {
@@ -212,7 +214,7 @@ function ProfileContent() {
       formData.append('file', photoFile);
       formData.append('user_id', userId);
 
-      const response = await fetch('https://web-production-9463.up.railway.app/auth/update-profile-photo', {
+      const response = await fetch(API_ENDPOINTS.auth.updateProfilePhoto, {
         method: 'POST',
         body: formData,
       });
@@ -230,6 +232,39 @@ function ProfileContent() {
       alert(err.message || 'Failed to upload photo');
     } finally {
       setIsUploadingPhoto(false);
+    }
+  };
+
+  const handleUpdateProfile = async () => {
+    if (!userId) return;
+
+    setIsSavingProfile(true);
+    try {
+      const formData = new FormData();
+      formData.append('user_id', userId);
+      formData.append('name', fullName);
+      formData.append('gender', gender);
+      formData.append('country', country);
+      formData.append('height', height);
+      formData.append('body_shape', bodyShape);
+      formData.append('skin_tone', skinTone);
+
+      const response = await fetch(API_ENDPOINTS.auth.updateProfile, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
+      }
+
+      setIsEditingProfile(false);
+      alert('Profile updated successfully!');
+    } catch (err: any) {
+      console.error('Error updating profile:', err);
+      alert(err.message || 'Failed to update profile');
+    } finally {
+      setIsSavingProfile(false);
     }
   };
 
@@ -632,7 +667,7 @@ function ProfileContent() {
                               : "border-gray-200 bg-white hover:border-emerald-600"
                               }`}
                           >
-                            
+
                             <span className="text-xs font-medium text-gray-900 text-center leading-tight">
                               {shape.name}
                             </span>
@@ -674,8 +709,12 @@ function ProfileContent() {
 
                   {/* Save Button */}
                   {isEditingProfile && (
-                    <button className="w-full rounded-lg bg-gradient-to-r from-emerald-700 to-yellow-400 py-3 text-sm font-semibold text-white hover:from-emerald-600 hover:to-yellow-500 transition-all shadow-md hover:shadow-lg">
-                      Save Changes
+                    <button
+                      onClick={handleUpdateProfile}
+                      disabled={isSavingProfile}
+                      className="w-full rounded-lg bg-gradient-to-r from-emerald-700 to-yellow-400 py-3 text-sm font-semibold text-white hover:from-emerald-600 hover:to-yellow-500 transition-all shadow-md hover:shadow-lg disabled:opacity-50"
+                    >
+                      {isSavingProfile ? "Saving..." : "Save Changes"}
                     </button>
                   )}
                 </div>
@@ -748,7 +787,7 @@ function ProfileContent() {
                         <div className="rounded-lg bg-white p-4 border border-gray-200">
                           <div className="flex items-center gap-3">
                             <div className="h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center">
-                              
+
                             </div>
                             <div>
                               <p className="text-xs text-gray-500 font-medium">Body Shape</p>

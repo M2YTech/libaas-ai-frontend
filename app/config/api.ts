@@ -8,6 +8,7 @@ export const API_ENDPOINTS = {
     login: `${API_BASE_URL}/auth/login`,
     profile: (userId: string) => `${API_BASE_URL}/auth/profile/${userId}`,
     updateProfilePhoto: `${API_BASE_URL}/auth/update-profile-photo`,
+    updateProfile: `${API_BASE_URL}/auth/update-profile`,
   },
   wardrobe: {
     items: (userId: string) => `${API_BASE_URL}/wardrobe/items/${userId}`,
