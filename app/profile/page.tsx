@@ -255,7 +255,8 @@ function ProfileContent() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to update profile');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || 'Failed to update profile');
       }
 
       setIsEditingProfile(false);
