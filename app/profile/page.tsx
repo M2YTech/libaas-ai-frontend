@@ -34,6 +34,10 @@ function ProfileContent() {
   const [clipInsights, setClipInsights] = useState<any>(null);
   const [recommendations, setRecommendations] = useState<any>(null);
 
+  // AI Style Insights state
+  const [styleInsights, setStyleInsights] = useState<any>(null);
+  const [isLoadingInsights, setIsLoadingInsights] = useState(false);
+
   // Fetch user profile data from backend
   useEffect(() => {
     const fetchProfile = async () => {
@@ -272,6 +276,28 @@ function ProfileContent() {
       alert(err.message || 'Failed to update profile');
     } finally {
       setIsSavingProfile(false);
+    }
+  };
+
+  const fetchStyleInsights = async () => {
+    if (!userId) return;
+
+    setIsLoadingInsights(true);
+    try {
+      const response = await fetch(API_ENDPOINTS.auth.styleInsights(userId));
+      const data = await response.json();
+
+      if (data.success) {
+        setStyleInsights(data.insights);
+      } else {
+        console.error('Failed to load insights:', data.message);
+        alert(data.message || 'Failed to generate insights');
+      }
+    } catch (error) {
+      console.error('Error fetching style insights:', error);
+      alert('Error connecting to AI service');
+    } finally {
+      setIsLoadingInsights(false);
     }
   };
 
@@ -740,8 +766,12 @@ function ProfileContent() {
                       Personalized recommendations based on your wardrobe
                     </p>
                   </div>
-                  <button className="rounded-lg bg-gradient-to-r from-emerald-700 to-yellow-400 px-4 py-2 text-sm font-semibold text-white hover:from-emerald-600 hover:to-yellow-500 transition-all shadow-md hover:shadow-lg">
-                    Re-Analyze
+                  <button
+                    onClick={fetchStyleInsights}
+                    disabled={isLoadingInsights}
+                    className="rounded-lg bg-gradient-to-r from-emerald-700 to-yellow-400 px-4 py-2 text-sm font-semibold text-white hover:from-emerald-600 hover:to-yellow-500 transition-all shadow-md hover:shadow-lg disabled:opacity-50"
+                  >
+                    {isLoadingInsights ? 'Generating...' : 'Generate Insights'}
                   </button>
                 </div>
 
@@ -841,7 +871,104 @@ function ProfileContent() {
                   </div>
 
                   {/* Personalized Recommendations */}
-                  {recommendations && (
+                  {styleInsights && (
+                    <div className="space-y-6 animate-fadeIn">
+                      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                        Personalized Style Recommendations
+                      </h3>
+
+                      {/* Summary */}
+                      <div className="bg-gradient-to-r from-emerald-50 to-yellow-50 p-4 rounded-lg border border-emerald-200 shadow-sm">
+                        <p className="text-gray-800 leading-relaxed font-medium">{styleInsights.summary}</p>
+                      </div>
+
+                      {/* Color Palette */}
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+                          Your Color Palette
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {styleInsights.color_palette.map((color: string, idx: number) => (
+                            <span key={idx} className="px-3 py-1 bg-white rounded-full text-sm font-medium text-gray-700 border border-gray-200 shadow-sm">
+                              {color}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Style Recommendations */}
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+                          Style Tips
+                        </h3>
+                        <ul className="space-y-3">
+                          {styleInsights.style_recommendations.map((tip: string, idx: number) => (
+                            <li key={idx} className="flex items-start gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                              <span className="text-emerald-600 mt-0.5 font-bold">✓</span>
+                              <span className="text-gray-700 text-sm leading-relaxed">{tip}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Wardrobe Essentials */}
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+                          Wardrobe Essentials
+                        </h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                          {styleInsights.wardrobe_essentials.map((item: string, idx: number) => (
+                            <div key={idx} className="bg-white p-3 rounded-lg border border-gray-200 text-sm text-gray-700 font-medium text-center shadow-sm">
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Fashion Do's & Don'ts */}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div className="bg-green-50/50 p-4 rounded-xl border border-green-100">
+                          <h3 className="text-sm font-bold text-green-700 uppercase tracking-wide mb-3 flex items-center gap-2">
+                            <span className="text-lg">👍</span> Fashion Do's
+                          </h3>
+                          <ul className="space-y-2">
+                            {styleInsights.fashion_dos.map((item: string, idx: number) => (
+                              <li key={idx} className="flex items-start gap-2 text-sm">
+                                <span className="text-green-600 font-bold">•</span>
+                                <span className="text-gray-700">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="bg-red-50/50 p-4 rounded-xl border border-red-100">
+                          <h3 className="text-sm font-bold text-red-700 uppercase tracking-wide mb-3 flex items-center gap-2">
+                            <span className="text-lg">👎</span> Fashion Don'ts
+                          </h3>
+                          <ul className="space-y-2">
+                            {styleInsights.fashion_donts.map((item: string, idx: number) => (
+                              <li key={idx} className="flex items-start gap-2 text-sm">
+                                <span className="text-red-600 font-bold">•</span>
+                                <span className="text-gray-700">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Cultural Tips */}
+                      {styleInsights.cultural_tips && (
+                        <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm">
+                          <h3 className="text-sm font-semibold text-blue-700 mb-2 flex items-center gap-2">
+                            <span className="text-lg">🌍</span> Local Fashion Trends
+                          </h3>
+                          <p className="text-sm text-gray-700 leading-relaxed">{styleInsights.cultural_tips}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Legacy Recommendations (Hidden if new insights exist) */}
+                  {!styleInsights && recommendations && (
                     <div>
                       <h3 className="mb-4 text-sm font-semibold text-gray-500 uppercase tracking-wide">
                         Personalized Style Recommendations
