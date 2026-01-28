@@ -249,14 +249,20 @@ function ProfileContent() {
       formData.append('body_shape', bodyShape);
       formData.append('skin_tone', skinTone);
 
+      console.log('Attemping profile update for user:', userId);
+      console.log('Update data:', { fullName, gender, country, height, bodyShape, skinTone });
+
       const response = await fetch(API_ENDPOINTS.auth.updateProfile, {
         method: 'POST',
         body: formData,
       });
 
+      console.log('Response status:', response.status);
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || 'Failed to update profile');
+        console.error('Server error response:', errorData);
+        throw new Error(errorData.detail || `Server error (${response.status})`);
       }
 
       setIsEditingProfile(false);
