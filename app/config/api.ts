@@ -9,11 +9,12 @@ export const API_ENDPOINTS = {
     profile: (userId: string) => `${API_BASE_URL}/auth/profile/${userId}`,
     updateProfilePhoto: `${API_BASE_URL}/auth/update-profile-photo`,
     updateProfile: `${API_BASE_URL}/auth/update-profile`,
+    styleInsights: (userId: string) => `${API_BASE_URL}/auth/style-insights/${userId}`,
   },
   wardrobe: {
     items: (userId: string) => `${API_BASE_URL}/wardrobe/items/${userId}`,
     upload: `${API_BASE_URL}/wardrobe/upload`,
-    deleteItem: (itemId: string, userId: string) => 
+    deleteItem: (itemId: string, userId: string) =>
       `${API_BASE_URL}/wardrobe/items/${itemId}?user_id=${userId}`,
     generateOutfits: `${API_BASE_URL}/wardrobe/generate-outfit-recommendations`,
   },
