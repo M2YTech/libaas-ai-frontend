@@ -83,6 +83,7 @@ function ProfileContent() {
         setProfileImage(data.image_url || "");
         setOriginalProfileImage(data.image_url || "");
         setClipInsights(data.clip_insights || null);
+        setStyleInsights(data.style_insights || null);
         setRecommendations(data.recommendations || null);
 
         setLoading(false);
