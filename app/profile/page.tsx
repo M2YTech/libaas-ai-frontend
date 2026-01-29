@@ -22,6 +22,7 @@ function ProfileContent() {
   const [error, setError] = useState("");
   const [userId, setUserId] = useState<string | null>(null);
   const [profileImage, setProfileImage] = useState<string>("");
+  const [originalProfileImage, setOriginalProfileImage] = useState<string>("");
 
   // User profile data
   const [fullName, setFullName] = useState("");
@@ -80,6 +81,7 @@ function ProfileContent() {
         setBodyShape(data.body_shape || "");
         setSkinTone(data.skin_tone || "");
         setProfileImage(data.image_url || "");
+        setOriginalProfileImage(data.image_url || "");
         setClipInsights(data.clip_insights || null);
         setRecommendations(data.recommendations || null);
 
@@ -207,6 +209,11 @@ function ProfileContent() {
       };
       reader.readAsDataURL(file);
     }
+  };
+
+  const handleCancelPhoto = () => {
+    setPhotoFile(null);
+    setProfileImage(originalProfileImage);
   };
 
   const handlePhotoUpload = async () => {
@@ -425,13 +432,22 @@ function ProfileContent() {
                 </div>
 
                 {photoFile && (
-                  <button
-                    onClick={handlePhotoUpload}
-                    disabled={isUploadingPhoto}
-                    className="mb-2 px-3 py-1 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-full disabled:opacity-50 transition-colors"
-                  >
-                    {isUploadingPhoto ? 'Uploading...' : 'Save Photo'}
-                  </button>
+                  <div className="flex flex-col gap-2 mb-4">
+                    <button
+                      onClick={handlePhotoUpload}
+                      disabled={isUploadingPhoto}
+                      className="w-full px-3 py-1.5 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-full disabled:opacity-50 transition-colors shadow-sm"
+                    >
+                      {isUploadingPhoto ? 'Uploading...' : 'Save Photo'}
+                    </button>
+                    <button
+                      onClick={handleCancelPhoto}
+                      disabled={isUploadingPhoto}
+                      className="w-full px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 )}
                 <h2 className="text-lg font-bold text-gray-900">{fullName || "Guest User"}</h2>
                 <p className="text-sm text-gray-600">{email || "No email"}</p>
@@ -1176,10 +1192,10 @@ function ProfileContent() {
                 <div className="border-t border-gray-200 pt-6">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-sm text-gray-600">Total Items:</span>
-                    <span className="text-2xl font-bold text-gray-900">42</span>
+                    <span className="text-2xl font-bold text-gray-900"></span>
                   </div>
                   <div className="mt-2 text-sm text-gray-600">
-                    <span className="font-medium">Last upload:</span> Gold Dupatta
+                    <span className="font-medium">Last upload:</span>
                   </div>
                 </div>
               </div>
