@@ -983,121 +983,18 @@ function ProfileContent() {
                     </div>
                   )}
 
-                  {/* Legacy Recommendations (Hidden if new insights exist) */}
-                  {!styleInsights && recommendations && (
-                    <div>
-                      <h3 className="mb-4 text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                        Personalized Style Recommendations
-                      </h3>
-
-                      {/* Summary */}
-                      {recommendations.summary && (
-                        <div className="mb-4 p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-yellow-50 border border-emerald-200">
-                          <p className="text-sm text-gray-700 italic">
-                            {recommendations.summary}
-                          </p>
-                        </div>
-                      )}
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {/* Best Fits */}
-                        {recommendations.best_fits?.length > 0 && (
-                          <div className="rounded-lg bg-white p-4 border border-gray-200">
-                            <h4 className="text-sm font-bold text-emerald-700 mb-3 flex items-center gap-2">
-                              Best Fits for You
-                            </h4>
-                            <ul className="space-y-2">
-                              {recommendations.best_fits.map((fit: string, idx: number) => (
-                                <li key={idx} className="text-sm text-gray-700 flex items-start gap-2">
-                                  <span className="text-emerald-600">•</span>
-                                  {fit}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-
-                        {/* Best Colors */}
-                        {recommendations.best_colors?.length > 0 && (
-                          <div className="rounded-lg bg-white p-4 border border-gray-200">
-                            <h4 className="text-sm font-bold text-yellow-700 mb-3 flex items-center gap-2">
-                              Your Perfect Colors
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {recommendations.best_colors.map((color: string, idx: number) => (
-                                <span
-                                  key={idx}
-                                  className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-medium"
-                                >
-                                  {color}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Complementary Colors */}
-                        {recommendations.complementary_colors?.length > 0 && (
-                          <div className="rounded-lg bg-white p-4 border border-gray-200">
-                            <h4 className="text-sm font-bold text-purple-700 mb-3 flex items-center gap-2">
-                              Complementary Shades
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {recommendations.complementary_colors.map((color: string, idx: number) => (
-                                <span
-                                  key={idx}
-                                  className="px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-medium"
-                                >
-                                  {color}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Jewelry Metals */}
-                        {recommendations.jewelry_metals && (
-                          <div className="rounded-lg bg-white p-4 border border-gray-200">
-                            <h4 className="text-sm font-bold text-pink-700 mb-3 flex items-center gap-2">
-                              Jewelry Metals
-                            </h4>
-                            <p className="text-sm text-gray-700">{recommendations.jewelry_metals}</p>
-                          </div>
-                        )}
+                  {/* Only show "No Insights" if nothing is generated yet */}
+                  {!styleInsights && !isLoadingInsights && (
+                    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-8 border border-dashed border-gray-300 text-center">
+                      <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                        <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
                       </div>
-
-                      {/* Pro Tips */}
-                      {recommendations.pro_tips?.length > 0 && (
-                        <div className="mt-4 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 p-4 border border-blue-200">
-                          <h4 className="text-sm font-bold text-blue-700 mb-2 flex items-center gap-2">
-                            Pro Styling Tips
-                          </h4>
-                          {recommendations.pro_tips.map((tip: string, idx: number) => (
-                            <p key={idx} className="text-sm text-gray-700 mb-2 last:mb-0">
-                              {tip}
-                            </p>
-                          ))}
-                        </div>
-                      )}
-
-                      {/* Avoid */}
-                      {recommendations.avoid?.length > 0 && (
-                        <div className="mt-4 rounded-lg bg-red-50 p-4 border border-red-200">
-                          <h4 className="text-sm font-bold text-red-700 mb-3 flex items-center gap-2">
-                            Styles to Avoid
-                          </h4>
-                          <div className="flex flex-wrap gap-2">
-                            {recommendations.avoid.slice(0, 6).map((item: string, idx: number) => (
-                              <span
-                                key={idx}
-                                className="px-3 py-1 rounded-full bg-red-100 text-red-800 text-xs font-medium"
-                              >
-                                {item}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">Ready for your AI Style Guide?</h3>
+                      <p className="text-sm text-gray-600 mb-6 max-w-sm mx-auto">
+                        Click the 'Generate' button above to get personalized recommendations based on your unique profile and location.
+                      </p>
                     </div>
                   )}
 
