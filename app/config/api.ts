@@ -1,5 +1,15 @@
 // API Configuration
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://web-production-9463.up.railway.app";
+// API Configuration
+const getBaseUrl = () => {
+  let url = process.env.NEXT_PUBLIC_API_URL || "https://web-production-9463.up.railway.app";
+  // Remove trailing slash if present
+  if (url.endsWith('/')) {
+    url = url.slice(0, -1);
+  }
+  return url;
+};
+
+export const API_BASE_URL = getBaseUrl();
 
 // API Endpoints
 export const API_ENDPOINTS = {
