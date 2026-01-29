@@ -5,9 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 // Use proxy to avoid CORS issues in development
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? "https://web-production-9463.up.railway.app"
-  : "/api";
+import { API_ENDPOINTS } from "../config/api";
 
 interface ClipInsights {
   top_label: string;
@@ -34,7 +32,7 @@ export default function SignUpPage() {
   const [skinTone, setSkinTone] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [uploadedPhotos, setUploadedPhotos] = useState<File[]>([]);
-  
+
   // API states
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -161,20 +159,21 @@ export default function SignUpPage() {
       formData.append("email", email);
       formData.append("password", password);
       formData.append("gender", gender);
-      
+
       // Optional fields
       if (height) formData.append("height", height);
       if (country && country !== "Select your country") formData.append("country", country);
       if (bodyShape) formData.append("body_shape", bodyShape);
       if (skinTone) formData.append("skin_tone", skinTone);
-      
+
       // Add image if uploaded
       if (uploadedPhotos.length > 0) {
         formData.append("image", uploadedPhotos[0]);
       }
 
       // Send request to backend
-      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+      // Send request to backend
+      const response = await fetch(API_ENDPOINTS.auth.signup, {
         method: "POST",
         body: formData,
       });
@@ -188,7 +187,7 @@ export default function SignUpPage() {
       // Success!
       const result = data as SignupResponse;
       setSuccessMessage(result.message || "Account created successfully!");
-      
+
       if (result.clip_insights) {
         setClipInsights(result.clip_insights);
       }
@@ -355,11 +354,10 @@ export default function SignUpPage() {
                   key={option.id}
                   type="button"
                   onClick={() => setGender(option.id)}
-                  className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-3 sm:p-4 transition-all duration-200 ${
-                    gender === option.id
+                  className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-3 sm:p-4 transition-all duration-200 ${gender === option.id
                       ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
                       : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
-                  }`}
+                    }`}
                 >
                   <div className="scale-75 sm:scale-100">
                     {option.icon}
@@ -404,9 +402,8 @@ export default function SignUpPage() {
               </div>
             </div>
             <svg
-              className={`h-4 w-4 sm:h-5 sm:w-5 text-gray-700 transition-transform duration-300 ${
-                showOptionalDetails ? "rotate-180" : ""
-              }`}
+              className={`h-4 w-4 sm:h-5 sm:w-5 text-gray-700 transition-transform duration-300 ${showOptionalDetails ? "rotate-180" : ""
+                }`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -513,11 +510,10 @@ export default function SignUpPage() {
                       key={shape.id}
                       type="button"
                       onClick={() => setBodyShape(shape.id)}
-                      className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${
-                        bodyShape === shape.id
+                      className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${bodyShape === shape.id
                           ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
                           : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
-                      }`}
+                        }`}
                     >
                       <div className="scale-90 sm:scale-100">
                         {shape.icon}
@@ -541,11 +537,10 @@ export default function SignUpPage() {
                       key={tone.id}
                       type="button"
                       onClick={() => setSkinTone(tone.id)}
-                      className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${
-                        skinTone === tone.id
+                      className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${skinTone === tone.id
                           ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
                           : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
-                      }`}
+                        }`}
                     >
                       <div
                         className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border-2 border-white shadow-md ring-2 ring-gray-200"

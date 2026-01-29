@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { API_ENDPOINTS } from "../config/api";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -19,12 +20,7 @@ export default function SignInPage() {
     setError("");
 
     try {
-      // Use proxy to avoid CORS issues
-      const API_URL = process.env.NODE_ENV === 'production'
-        ? "https://web-production-9463.up.railway.app"
-        : "/api";
-      
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch(API_ENDPOINTS.auth.login, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
