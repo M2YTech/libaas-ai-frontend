@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { API_ENDPOINTS } from "../config/api";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function Navbar() {
         }
 
         // Fetch latest profile data
-        fetch(`https://web-production-9463.up.railway.app/auth/profile/${userId}`)
+        fetch(API_ENDPOINTS.auth.profile(userId))
           .then((res) => {
             if (res.ok) return res.json();
             throw new Error("Failed to fetch profile");

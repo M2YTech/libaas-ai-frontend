@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { API_ENDPOINTS } from "../config/api";
 
 interface OutfitSection {
   item: string;
@@ -133,7 +134,7 @@ export default function GetStartedPage() {
       formData.append("theme", form.theme);
       formData.append("num_looks", form.numberOfOutfits.toString());
 
-      const response = await fetch("https://web-production-9463.up.railway.app/wardrobe/generate-outfit-recommendations", {
+      const response = await fetch(API_ENDPOINTS.wardrobe.generateOutfits, {
         method: "POST",
         body: formData,
       });
@@ -261,13 +262,13 @@ export default function GetStartedPage() {
   };
 
   const eventTypes = [
-    { id: "wedding", name: "Wedding / Shadi"},
-    { id: "mehndi", name: "Mehndi"},
-    { id: "cultural", name: "Cultural Event"},
-    { id: "office", name: "Office / Professional"},
-    { id: "casual", name: "Casual Outing"},
-    { id: "party", name: "Party / Celebration"},
-    { id: "formal", name: "Formal Dinner"},
+    { id: "wedding", name: "Wedding / Shadi" },
+    { id: "mehndi", name: "Mehndi" },
+    { id: "cultural", name: "Cultural Event" },
+    { id: "office", name: "Office / Professional" },
+    { id: "casual", name: "Casual Outing" },
+    { id: "party", name: "Party / Celebration" },
+    { id: "formal", name: "Formal Dinner" },
   ];
 
   return (
