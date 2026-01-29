@@ -145,6 +145,20 @@ export default function SignUpPage() {
     }
   };
 
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const files = e.dataTransfer.files;
+    if (files && files.length > 0) {
+      setUploadedPhotos([...uploadedPhotos, ...Array.from(files)]);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -355,8 +369,8 @@ export default function SignUpPage() {
                   type="button"
                   onClick={() => setGender(option.id)}
                   className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-3 sm:p-4 transition-all duration-200 ${gender === option.id
-                      ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
-                      : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
+                    ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
+                    : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
                     }`}
                 >
                   <div className="scale-75 sm:scale-100">
@@ -511,8 +525,8 @@ export default function SignUpPage() {
                       type="button"
                       onClick={() => setBodyShape(shape.id)}
                       className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${bodyShape === shape.id
-                          ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
-                          : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
+                        ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
+                        : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
                         }`}
                     >
                       <div className="scale-90 sm:scale-100">
@@ -538,8 +552,8 @@ export default function SignUpPage() {
                       type="button"
                       onClick={() => setSkinTone(tone.id)}
                       className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${skinTone === tone.id
-                          ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
-                          : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
+                        ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
+                        : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
                         }`}
                     >
                       <div
@@ -559,7 +573,11 @@ export default function SignUpPage() {
                 <label className="mb-3 block text-xs sm:text-sm font-semibold text-gray-700">
                   Upload Your Photos (Optional)
                 </label>
-                <label className="group flex min-h-[120px] sm:min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-white p-4 sm:p-6 transition-all duration-200 hover:border-emerald-400 hover:bg-gradient-to-br hover:from-emerald-50/50 hover:to-yellow-50/50 hover:shadow-lg">
+                <label
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  className="group flex min-h-[120px] sm:min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-white p-4 sm:p-6 transition-all duration-200 hover:border-emerald-400 hover:bg-gradient-to-br hover:from-emerald-50/50 hover:to-yellow-50/50 hover:shadow-lg"
+                >
                   <input
                     type="file"
                     multiple
