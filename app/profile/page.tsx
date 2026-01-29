@@ -83,7 +83,11 @@ function ProfileContent() {
         setProfileImage(data.image_url || "");
         setOriginalProfileImage(data.image_url || "");
         setClipInsights(data.clip_insights || null);
-        setStyleInsights(data.style_insights || null);
+
+        // Load persisted style insights from database (stored in clip_insights)
+        const persistedInsights = data.style_insights || data.clip_insights?.persisted_style_insights;
+        setStyleInsights(persistedInsights || null);
+
         setRecommendations(data.recommendations || null);
 
         setLoading(false);
