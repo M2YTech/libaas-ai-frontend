@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://libaas-backend-production.up.railway.app/:path*',
+        destination: 'https://web-production-9463.up.railway.app/:path*',
       },
     ];
   },

@@ -1,7 +1,7 @@
 // API Configuration
 // API Configuration
 const getBaseUrl = () => {
-  let url = process.env.NEXT_PUBLIC_API_URL || "https://libaas-backend-production.up.railway.app";
+  let url = process.env.NEXT_PUBLIC_API_URL || "https://web-production-9463.up.railway.app";
   // Remove trailing slash if present
   if (url.endsWith('/')) {
     url = url.slice(0, -1);
