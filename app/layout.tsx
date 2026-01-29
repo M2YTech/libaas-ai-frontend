@@ -14,6 +14,8 @@ const robotoMono = Roboto_Mono({
   subsets: ["latin"],
 });
 
+import { ThemeProvider } from "./components/ThemeProvider";
+
 export const metadata: Metadata = {
   title: "Libaas AI",
   description: "LibassAI is a platform that helps you manage your wardrobe and get outfit suggestions.",
@@ -25,11 +27,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        <Navbar />
-        {children}
-        <Footer />
+    <html lang="en">
+      <body>
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
