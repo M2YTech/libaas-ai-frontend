@@ -140,8 +140,8 @@ export default function SignUpPage() {
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
-    if (files) {
-      setUploadedPhotos([...uploadedPhotos, ...Array.from(files)]);
+    if (files && files.length > 0) {
+      setUploadedPhotos([files[0]]);
     }
   };
 
@@ -155,8 +155,12 @@ export default function SignUpPage() {
     e.stopPropagation();
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
-      setUploadedPhotos([...uploadedPhotos, ...Array.from(files)]);
+      setUploadedPhotos([files[0]]);
     }
+  };
+
+  const handleRemovePhoto = () => {
+    setUploadedPhotos([]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -580,7 +584,6 @@ export default function SignUpPage() {
                 >
                   <input
                     type="file"
-                    multiple
                     accept="image/*"
                     onChange={handlePhotoUpload}
                     className="hidden"
@@ -612,13 +615,29 @@ export default function SignUpPage() {
                   </p>
                   <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 10MB</p>
                   {uploadedPhotos.length > 0 && (
-                    <div className="mt-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 border border-emerald-200">
-                      <svg className="h-4 w-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <p className="text-xs font-semibold text-emerald-700">
-                        {uploadedPhotos.length} photo(s) selected
-                      </p>
+                    <div className="mt-3 flex items-center justify-between w-full max-w-[250px] px-3 py-1.5 rounded-full bg-emerald-100 border border-emerald-200">
+                      <div className="flex items-center gap-2 overflow-hidden">
+                        <svg className="h-4 w-4 text-emerald-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <p className="text-xs font-semibold text-emerald-700 truncate">
+                          {uploadedPhotos[0].name}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleRemovePhoto();
+                        }}
+                        className="p-1 rounded-full hover:bg-emerald-200 text-emerald-600 transition-colors"
+                        title="Remove photo"
+                      >
+                        <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
                     </div>
                   )}
                 </label>
