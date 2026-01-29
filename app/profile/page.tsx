@@ -361,13 +361,13 @@ function ProfileContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-700 via-emerald-600 to-yellow-400">
+    <div className="min-h-screen bg-background transition-colors duration-500">
       <div className="mx-auto max-w-7xl px-4 py-8">
-        <div className="flex gap-6">
+        <div className="flex flex-col lg:flex-row gap-6">
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="lg:hidden fixed top-4 left-4 z-50 rounded-lg bg-white/95 backdrop-blur-sm p-3 shadow-xl border border-white/20"
+            className="lg:hidden fixed top-4 left-4 z-50 rounded-xl bg-card border border-border p-3 shadow-2xl backdrop-blur-md"
           >
             <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isSidebarOpen ? (
@@ -380,18 +380,18 @@ function ProfileContent() {
 
           {/* Sidebar */}
           <aside className={`
-            fixed lg:sticky top-0 left-0 h-screen lg:h-auto
+            fixed lg:sticky top-0 left-0 h-screen lg:h-[calc(100vh-120px)]
             w-64 lg:w-72 flex-shrink-0
-            bg-white/95 backdrop-blur-sm rounded-none lg:rounded-2xl
-            shadow-xl border border-white/20
+            bg-card rounded-none lg:rounded-3xl
+            shadow-2xl border border-border
             transition-transform duration-300 ease-in-out z-40
             ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             overflow-y-auto
           `}>
-            <div className="p-6">
+            <div className="p-8">
               {/* Profile Header in Sidebar */}
-              <div className="mb-6 text-center pb-6 border-b border-gray-200">
-                <div className="relative mb-4 mx-auto w-24 h-24">
+              <div className="mb-8 text-center pb-8 border-b border-border">
+                <div className="relative mb-6 mx-auto w-28 h-28">
                   {/* Profile Image (Click to View) */}
                   <div
                     className={`h-full w-full rounded-full overflow-hidden shadow-lg border-4 border-white ${profileImage ? 'cursor-zoom-in hover:opacity-90' : ''} transition-all`}
@@ -437,39 +437,38 @@ function ProfileContent() {
                 </div>
 
                 {photoFile && (
-                  <div className="flex flex-col gap-2 mb-4">
+                  <div className="flex flex-col gap-2 mb-6">
                     <button
                       onClick={handlePhotoUpload}
                       disabled={isUploadingPhoto}
-                      className="w-full px-3 py-1.5 text-xs font-medium text-white bg-emerald-600 hover:bg-emerald-700 rounded-full disabled:opacity-50 transition-colors shadow-sm"
+                      className="w-full px-4 py-2 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl disabled:opacity-50 transition-all shadow-lg active:scale-95"
                     >
-                      {isUploadingPhoto ? 'Uploading...' : 'Save Photo'}
+                      {isUploadingPhoto ? 'Uploading...' : 'Save New Photo'}
                     </button>
                     <button
                       onClick={handleCancelPhoto}
                       disabled={isUploadingPhoto}
-                      className="w-full px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
+                      className="w-full px-4 py-2 text-sm font-bold text-muted-foreground bg-muted hover:bg-muted/80 rounded-xl transition-all active:scale-95"
                     >
                       Cancel
                     </button>
                   </div>
                 )}
-                <h2 className="text-lg font-bold text-gray-900">{fullName || "Guest User"}</h2>
-                <p className="text-sm text-gray-600">{email || "No email"}</p>
+                <h2 className="text-xl font-black text-foreground">{fullName || "Guest User"}</h2>
+                <p className="text-sm font-medium text-muted-foreground">{email || "No email linked"}</p>
               </div>
 
-              {/* Navigation Items */}
-              <nav className="space-y-2">
+              <nav className="space-y-3">
                 {sidebarItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => handleSectionChange(item.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all ${activeSection === item.id
-                      ? "bg-gradient-to-r from-emerald-700 to-yellow-400 text-white shadow-md"
-                      : "text-gray-700 hover:bg-gray-100"
+                    className={`w-full flex items-center gap-4 px-5 py-4 rounded-xl text-left transition-all duration-300 font-bold ${activeSection === item.id
+                      ? "bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-xl scale-[1.02]"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
                       }`}
                   >
-                    <span className="font-medium text-sm">{item.label}</span>
+                    <span className="text-base">{item.label}</span>
                   </button>
                 ))}
               </nav>
@@ -522,8 +521,8 @@ function ProfileContent() {
           <main className="flex-1 space-y-6">
             {/* Overview Section */}
             {activeSection === "overview" && (
-              <div className="rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-xl border border-white/20">
-                <h2 className="mb-6 text-2xl sm:text-3xl font-bold text-gray-900">Profile Overview</h2>
+              <div className="rounded-3xl bg-card p-6 sm:p-10 shadow-2xl border border-border transition-all duration-500">
+                <h2 className="mb-8 text-3xl sm:text-4xl font-black text-foreground tracking-tight">Profile Overview</h2>
 
                 {/* Wardrobe Summary */}
                 <div className="mb-6">
@@ -555,40 +554,40 @@ function ProfileContent() {
 
             {/* Privacy & Settings Section */}
             {activeSection === "privacy" && (
-              <div className="rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-xl border border-white/20">
-                <h2 className="mb-6 text-2xl font-bold text-gray-900">
+              <div className="rounded-3xl bg-card p-6 sm:p-10 shadow-2xl border border-border transition-all duration-500">
+                <h2 className="mb-8 text-3xl font-black text-foreground tracking-tight">
                   Privacy & Settings
                 </h2>
 
                 {/* Image Processing Toggle */}
-                <div className="mb-6 flex items-center justify-between gap-4">
+                <div className="mb-10 flex items-center justify-between gap-6 p-6 rounded-2xl bg-muted/30 border border-border">
                   <div className="flex-1">
-                    <h3 className="text-base font-semibold text-gray-900">Image Processing</h3>
-                    <p className="text-sm text-gray-600">
+                    <h3 className="text-lg font-bold text-foreground">Image Processing</h3>
+                    <p className="text-sm text-muted-foreground">
                       Allow AI to analyze photos for recommendations
                     </p>
                   </div>
                   <button
                     onClick={() => setImageProcessing(!imageProcessing)}
-                    className={`relative inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors ${imageProcessing ? "bg-gradient-to-r from-emerald-700 to-emerald-600" : "bg-gray-300"
+                    className={`relative inline-flex h-7 w-12 flex-shrink-0 items-center rounded-full transition-all duration-300 ${imageProcessing ? "bg-emerald-600" : "bg-muted-foreground/20"
                       }`}
                   >
                     <span
-                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${imageProcessing ? "translate-x-6" : "translate-x-1"
+                      className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform duration-300 shadow-sm ${imageProcessing ? "translate-x-6" : "translate-x-1"
                         }`}
                     />
                   </button>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <button
                     onClick={handleLogout}
-                    className="w-full rounded-lg border border-gray-300 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="w-full rounded-xl border border-border py-4 text-sm font-bold text-foreground hover:bg-muted transition-all active:scale-95"
                   >
                     Sign Out
                   </button>
-                  <button className="w-full rounded-lg border border-red-300 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors">
+                  <button className="w-full rounded-xl border border-red-500/20 py-4 text-sm font-bold text-red-500 hover:bg-red-500/10 transition-all active:scale-95">
                     Delete Account
                   </button>
                 </div>
@@ -597,19 +596,19 @@ function ProfileContent() {
 
             {/* Personal Info Section */}
             {activeSection === "personal-info" && (
-              <div className="rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-xl border border-white/20">
-                <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="rounded-3xl bg-card p-6 sm:p-10 shadow-2xl border border-border transition-all duration-500">
+                <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-3xl font-black text-foreground tracking-tight">
                       Personal Information
                     </h2>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-base text-muted-foreground">
                       Edit your personal info and style preferences
                     </p>
                   </div>
                   <button
                     onClick={() => setIsEditingProfile(!isEditingProfile)}
-                    className="rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+                    className="rounded-xl bg-muted px-6 py-3 text-sm font-bold text-foreground hover:bg-muted/80 transition-all active:scale-95 border border-border"
                   >
                     {isEditingProfile ? "Cancel" : "Edit Profile"}
                   </button>
@@ -618,7 +617,7 @@ function ProfileContent() {
                 <div className="space-y-6">
                   {/* Full Name */}
                   <div>
-                    <label className="mb-2 block text-xs sm:text-sm font-semibold text-gray-900">
+                    <label className="mb-2 block text-sm font-bold text-muted-foreground uppercase tracking-widest">
                       Full Name
                     </label>
                     {isEditingProfile ? (
@@ -626,10 +625,10 @@ function ProfileContent() {
                         type="text"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base text-gray-900 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
+                        className="w-full rounded-xl border border-border bg-background px-4 py-4 text-base text-foreground focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
                       />
                     ) : (
-                      <div className="rounded-lg bg-gray-50 px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base text-gray-900">
+                      <div className="rounded-xl bg-muted/30 border border-border px-5 py-4 text-base font-bold text-foreground">
                         {fullName}
                       </div>
                     )}
@@ -637,10 +636,10 @@ function ProfileContent() {
 
                   {/* Email Address */}
                   <div>
-                    <label className="mb-2 block text-xs sm:text-sm font-semibold text-gray-900">
+                    <label className="mb-2 block text-sm font-bold text-muted-foreground uppercase tracking-widest">
                       Email Address
                     </label>
-                    <div className="rounded-lg bg-gray-50 px-3 py-2.5 sm:px-4 sm:py-3 text-sm sm:text-base text-gray-900">
+                    <div className="rounded-xl bg-muted/30 border border-border px-5 py-4 text-base font-bold text-foreground">
                       {email}
                     </div>
                   </div>
@@ -648,18 +647,18 @@ function ProfileContent() {
                   {/* Gender */}
                   {isEditingProfile && (
                     <div>
-                      <label className="mb-2 block text-xs sm:text-sm font-semibold text-gray-900">
+                      <label className="mb-3 block text-sm font-bold text-muted-foreground uppercase tracking-widest">
                         Gender
                       </label>
-                      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                      <div className="grid grid-cols-3 gap-3">
                         {genderOptions.map((option) => (
                           <button
                             key={option.id}
                             type="button"
                             onClick={() => setGender(option.id)}
-                            className={`rounded-lg border-2 py-2.5 sm:py-3 text-xs sm:text-sm font-medium transition-all ${gender === option.id
-                              ? "border-emerald-700 bg-gradient-to-r from-emerald-700/10 to-yellow-400/10 text-emerald-700"
-                              : "border-gray-200 bg-white text-gray-700 hover:border-emerald-600"
+                            className={`rounded-xl border-2 py-4 text-sm font-bold transition-all active:scale-95 ${gender === option.id
+                              ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                              : "border-border bg-background text-muted-foreground hover:border-emerald-500/50"
                               }`}
                           >
                             {option.name}
@@ -707,22 +706,21 @@ function ProfileContent() {
                   {/* Body Shape */}
                   {isEditingProfile && (
                     <div>
-                      <label className="mb-2 block text-xs sm:text-sm font-semibold text-gray-900">
+                      <label className="mb-3 block text-sm font-bold text-muted-foreground uppercase tracking-widest">
                         Body Shape
                       </label>
-                      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-5">
+                      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5">
                         {bodyShapeOptions.map((shape) => (
                           <button
                             key={shape.id}
                             type="button"
                             onClick={() => setBodyShape(shape.id)}
-                            className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-lg border-2 p-2.5 sm:p-3 transition-all ${bodyShape === shape.id
-                              ? "border-emerald-700 bg-gradient-to-r from-emerald-700/10 to-yellow-400/10"
-                              : "border-gray-200 bg-white hover:border-emerald-600"
+                            className={`flex flex-col items-center justify-center gap-3 rounded-xl border-2 p-4 transition-all active:scale-95 ${bodyShape === shape.id
+                              ? "border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                              : "border-border bg-background text-muted-foreground hover:border-emerald-500/50"
                               }`}
                           >
-
-                            <span className="text-xs font-medium text-gray-900 text-center leading-tight">
+                            <span className="text-sm font-bold text-center leading-tight">
                               {shape.name}
                             </span>
                           </button>
@@ -734,25 +732,25 @@ function ProfileContent() {
                   {/* Skin Tone */}
                   {isEditingProfile && (
                     <div>
-                      <label className="mb-2 block text-xs sm:text-sm font-semibold text-gray-900">
+                      <label className="mb-3 block text-sm font-bold text-muted-foreground uppercase tracking-widest">
                         Skin Tone
                       </label>
-                      <div className="grid grid-cols-3 gap-2 sm:gap-3 sm:grid-cols-5">
+                      <div className="grid grid-cols-3 gap-3 sm:grid-cols-5">
                         {skinToneOptions.map((tone) => (
                           <button
                             key={tone.id}
                             type="button"
                             onClick={() => setSkinTone(tone.id)}
-                            className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-lg border-2 p-2.5 sm:p-3 transition-all ${skinTone === tone.id
-                              ? "border-yellow-400 bg-gradient-to-r from-yellow-400/10 to-emerald-700/10"
-                              : "border-gray-200 bg-white hover:border-yellow-400"
+                            className={`flex flex-col items-center justify-center gap-3 rounded-xl border-2 p-4 transition-all active:scale-95 ${skinTone === tone.id
+                              ? "border-emerald-500 bg-emerald-500/10"
+                              : "border-border bg-background hover:border-emerald-500/50"
                               }`}
                           >
                             <div
-                              className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border-2 border-gray-300"
+                              className="h-8 w-8 rounded-full border-2 border-white/20 shadow-sm"
                               style={{ backgroundColor: tone.color }}
                             ></div>
-                            <span className="text-xs font-medium text-gray-900">
+                            <span className="text-xs font-bold text-foreground">
                               {tone.name}
                             </span>
                           </button>
@@ -766,7 +764,7 @@ function ProfileContent() {
                     <button
                       onClick={handleUpdateProfile}
                       disabled={isSavingProfile}
-                      className="w-full rounded-lg bg-gradient-to-r from-emerald-700 to-yellow-400 py-3 text-sm font-semibold text-white hover:from-emerald-600 hover:to-yellow-500 transition-all shadow-md hover:shadow-lg disabled:opacity-50"
+                      className="w-full mt-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 py-4 text-base font-bold text-white hover:from-emerald-500 hover:to-emerald-400 transition-all shadow-lg hover:shadow-emerald-500/20 disabled:opacity-50 active:scale-95"
                     >
                       {isSavingProfile ? "Saving..." : "Save Changes"}
                     </button>
@@ -776,116 +774,66 @@ function ProfileContent() {
             )}
 
             {/* AI Style Insights Section */}
+            {/* AI Style Insights Section */}
             {activeSection === "ai-insights" && (
-              <div className="rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-xl border border-white/20">
-                <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="rounded-3xl bg-card p-6 sm:p-10 shadow-2xl border border-border animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-3xl font-black text-foreground tracking-tight">
                       AI Style Insights
                     </h2>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-base text-muted-foreground">
                       Personalized recommendations based on your wardrobe
                     </p>
                   </div>
                   <button
                     onClick={fetchStyleInsights}
                     disabled={isLoadingInsights}
-                    className="rounded-lg bg-gradient-to-r from-emerald-700 to-yellow-400 px-4 py-2 text-sm font-semibold text-white hover:from-emerald-600 hover:to-yellow-500 transition-all shadow-md hover:shadow-lg disabled:opacity-50"
+                    className="rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 px-6 py-3 text-sm font-bold text-white hover:from-emerald-500 hover:to-emerald-400 transition-all shadow-lg hover:shadow-emerald-500/20 disabled:opacity-50 active:scale-95"
                   >
                     {isLoadingInsights ? 'Generating...' : 'Generate Insights'}
                   </button>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-10">
                   {/* User Profile Attributes */}
                   <div>
-                    <div className="mb-4">
-                      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                    <div className="mb-6">
+                      <h3 className="text-sm font-bold text-muted-foreground uppercase tracking-widest">
                         Your Profile Details
                       </h3>
-                      <p className="text-xs text-gray-600 mt-1">
+                      <p className="text-xs text-muted-foreground/60 mt-2">
                         These details help our AI generate personalized looks for you
                       </p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                       {/* Gender */}
-                      <div className="rounded-lg bg-white p-4 border border-gray-200">
-                        <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                            <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                          </div>
-                          <div>
-                            <p className="text-xs text-gray-500 font-medium">Gender</p>
-                            <p className="text-sm font-bold text-gray-900 capitalize">{gender || "Not specified"}</p>
-                          </div>
-                        </div>
+                      <div className="rounded-2xl bg-muted/30 p-5 border border-border">
+                        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-1">Gender</p>
+                        <p className="text-lg font-black text-foreground capitalize">{gender || "Not specified"}</p>
                       </div>
 
                       {/* Height */}
                       {height && (
-                        <div className="rounded-lg bg-white p-4 border border-gray-200">
-                          <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
-                              </svg>
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500 font-medium">Height</p>
-                              <p className="text-sm font-bold text-gray-900">{height} cm</p>
-                            </div>
-                          </div>
+                        <div className="rounded-2xl bg-muted/30 p-5 border border-border">
+                          <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-1">Height</p>
+                          <p className="text-lg font-black text-foreground">{height} cm</p>
                         </div>
                       )}
 
                       {/* Body Shape */}
                       {bodyShape && (
-                        <div className="rounded-lg bg-white p-4 border border-gray-200">
-                          <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center">
-
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500 font-medium">Body Shape</p>
-                              <p className="text-sm font-bold text-gray-900 capitalize">{bodyShape}</p>
-                            </div>
-                          </div>
+                        <div className="rounded-2xl bg-muted/30 p-5 border border-border">
+                          <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-1">Body Shape</p>
+                          <p className="text-lg font-black text-foreground capitalize">{bodyShape}</p>
                         </div>
                       )}
 
                       {/* Skin Tone */}
                       {skinTone && (
-                        <div className="rounded-lg bg-white p-4 border border-gray-200">
-                          <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                              </svg>
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500 font-medium">Skin Tone</p>
-                              <p className="text-sm font-bold text-gray-900 capitalize">{skinTone}</p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Country */}
-                      {country && (
-                        <div className="rounded-lg bg-white p-4 border border-gray-200">
-                          <div className="flex items-center gap-3">
-                            <div className="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
-                              <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                            </div>
-                            <div>
-                              <p className="text-xs text-gray-500 font-medium">Country</p>
-                              <p className="text-sm font-bold text-gray-900">{country}</p>
-                            </div>
-                          </div>
+                        <div className="rounded-2xl bg-muted/30 p-5 border border-border">
+                          <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-1">Skin Tone</p>
+                          <p className="text-lg font-black text-foreground capitalize">{skinTone}</p>
                         </div>
                       )}
                     </div>
@@ -893,172 +841,145 @@ function ProfileContent() {
 
                   {/* Personalized Recommendations */}
                   {styleInsights && (
-                    <div className="space-y-6 animate-fadeIn">
-                      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                        Personalized Style Recommendations
-                      </h3>
-
-                      {/* Summary */}
-                      <div className="bg-gradient-to-r from-emerald-50 to-yellow-50 p-4 rounded-lg border border-emerald-200 shadow-sm">
-                        <p className="text-gray-800 leading-relaxed font-medium">{styleInsights.summary}</p>
-                      </div>
-
-                      {/* Color Palette */}
-                      <div>
-                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
-                          Your Color Palette
+                    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                      <div className="pt-8 border-t border-border">
+                        <h3 className="text-sm font-black text-muted-foreground uppercase tracking-widest mb-6">
+                          Personalized Style Recommendations
                         </h3>
-                        <div className="flex flex-wrap gap-2">
-                          {styleInsights.color_palette.map((color: string, idx: number) => (
-                            <span key={idx} className="px-3 py-1 bg-white rounded-full text-sm font-medium text-gray-700 border border-gray-200 shadow-sm">
-                              {color}
-                            </span>
-                          ))}
+
+                        {/* Summary */}
+                        <div className="bg-emerald-500/5 p-6 rounded-2xl border border-emerald-500/10 mb-8">
+                          <p className="text-foreground/90 leading-relaxed font-medium italic">"{styleInsights.summary}"</p>
                         </div>
-                      </div>
 
-                      {/* Style Recommendations */}
-                      <div>
-                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
-                          Style Tips
-                        </h3>
-                        <ul className="space-y-3">
-                          {styleInsights.style_recommendations.map((tip: string, idx: number) => (
-                            <li key={idx} className="flex items-start gap-3 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
-                              <span className="text-emerald-600 mt-0.5 font-bold">✓</span>
-                              <span className="text-gray-700 text-sm leading-relaxed">{tip}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Wardrobe Essentials */}
-                      <div>
-                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
-                          Wardrobe Essentials
-                        </h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                          {styleInsights.wardrobe_essentials.map((item: string, idx: number) => (
-                            <div key={idx} className="bg-white p-3 rounded-lg border border-gray-200 text-sm text-gray-700 font-medium text-center shadow-sm">
-                              {item}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Fashion Do's & Don'ts */}
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="bg-green-50/50 p-4 rounded-xl border border-green-100">
-                          <h3 className="text-sm font-bold text-green-700 uppercase tracking-wide mb-3 flex items-center gap-2">
-                            <span className="text-lg">👍</span> Fashion Do's
-                          </h3>
-                          <ul className="space-y-2">
-                            {styleInsights.fashion_dos.map((item: string, idx: number) => (
-                              <li key={idx} className="flex items-start gap-2 text-sm">
-                                <span className="text-green-600 font-bold">•</span>
-                                <span className="text-gray-700">{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className="bg-red-50/50 p-4 rounded-xl border border-red-100">
-                          <h3 className="text-sm font-bold text-red-700 uppercase tracking-wide mb-3 flex items-center gap-2">
-                            <span className="text-lg">👎</span> Fashion Don'ts
-                          </h3>
-                          <ul className="space-y-2">
-                            {styleInsights.fashion_donts.map((item: string, idx: number) => (
-                              <li key={idx} className="flex items-start gap-2 text-sm">
-                                <span className="text-red-600 font-bold">•</span>
-                                <span className="text-gray-700">{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Cultural Tips */}
-                      {styleInsights.cultural_tips && (
-                        <div className="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm">
-                          <h3 className="text-sm font-semibold text-blue-700 mb-2 flex items-center gap-2">
-                            <span className="text-lg">🌍</span> Local Fashion Trends
-                          </h3>
-                          <p className="text-sm text-gray-700 leading-relaxed">{styleInsights.cultural_tips}</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Only show "No Insights" if nothing is generated yet */}
-                  {!styleInsights && !isLoadingInsights && (
-                    <div className="bg-white/50 backdrop-blur-sm rounded-xl p-8 border border-dashed border-gray-300 text-center">
-                      <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                        <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-2">Ready for your AI Style Guide?</h3>
-                      <p className="text-sm text-gray-600 mb-6 max-w-sm mx-auto">
-                        Click the 'Generate' button above to get personalized recommendations based on your unique profile and location.
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Top Prediction */}
-                  {clipInsights && (
-                    <div className="rounded-xl bg-gradient-to-r from-emerald-50 to-yellow-50 p-6 border border-emerald-200">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                          AI Image Analysis
-                        </h3>
-                        <span className="text-xs font-bold text-emerald-700 bg-white px-3 py-1 rounded-full">
-                          {aiInsights.topConfidence}% Confidence
-                        </span>
-                      </div>
-                      <p className="text-2xl font-bold text-gray-900 capitalize">
-                        {aiInsights.topLabel}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* All Predictions */}
-                  {clipInsights && aiInsights.topPredictions.length > 0 && (
-                    <div>
-                      <h3 className="mb-3 text-sm font-semibold text-gray-500 uppercase tracking-wide">
-                        AI Style Predictions
-                      </h3>
-                      <div className="space-y-3">
-                        {aiInsights.topPredictions.map((pred: any, index: number) => (
-                          <div key={index} className="flex items-center justify-between p-4 rounded-lg bg-gray-50 border border-gray-200">
-                            <span className="text-sm font-medium text-gray-900 capitalize flex-1">
-                              {pred.label}
-                            </span>
-                            <div className="flex items-center gap-3">
-                              <div className="w-32 bg-gray-200 rounded-full h-2">
-                                <div
-                                  className="bg-gradient-to-r from-emerald-600 to-yellow-500 h-2 rounded-full"
-                                  style={{ width: `${pred.score}%` }}
-                                ></div>
-                              </div>
-                              <span className="text-xs font-semibold text-gray-600 w-12 text-right">
-                                {pred.score}%
-                              </span>
+                        <div className="grid grid-cols-1 gap-8">
+                          {/* Color Palette */}
+                          <div>
+                            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-4">Color Palette</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {styleInsights.color_palette.map((color: string, idx: number) => (
+                                <span key={idx} className="px-4 py-2 bg-muted/50 rounded-lg text-sm font-bold text-foreground border border-border">
+                                  {color}
+                                </span>
+                              ))}
                             </div>
                           </div>
-                        ))}
+
+                          {/* Style Tips */}
+                          <div>
+                            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-4">Style Tips</h4>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              {styleInsights.style_recommendations.map((tip: string, idx: number) => (
+                                <li key={idx} className="flex items-start gap-3 bg-muted/20 p-4 rounded-xl border border-border group hover:border-emerald-500/30 transition-all">
+                                  <span className="text-emerald-500 font-black">✓</span>
+                                  <span className="text-foreground/80 text-sm font-medium">{tip}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Wardrobe Essentials */}
+                          <div>
+                            <h4 className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-4">Wardrobe Essentials</h4>
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                              {styleInsights.wardrobe_essentials.map((item: string, idx: number) => (
+                                <div key={idx} className="bg-background p-4 rounded-xl border border-border text-sm text-foreground font-bold text-center shadow-sm hover:border-emerald-500/30 transition-all">
+                                  {item}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Do's & Don'ts */}
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-emerald-500/5 p-6 rounded-2xl border border-emerald-500/10">
+                              <h4 className="text-xs font-black text-emerald-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <span>👍</span> Do's
+                              </h4>
+                              <ul className="space-y-3">
+                                {styleInsights.fashion_dos.map((item: string, idx: number) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm font-medium text-foreground/80">
+                                    <span className="text-emerald-500">•</span> {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div className="bg-red-500/5 p-6 rounded-2xl border border-red-500/10">
+                              <h4 className="text-xs font-black text-red-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <span>👎</span> Don'ts
+                              </h4>
+                              <ul className="space-y-3">
+                                {styleInsights.fashion_donts.map((item: string, idx: number) => (
+                                  <li key={idx} className="flex items-start gap-2 text-sm font-medium text-foreground/80">
+                                    <span className="text-red-500">•</span> {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+
+                          {/* Cultural Tips */}
+                          {styleInsights.cultural_tips && (
+                            <div className="bg-blue-500/5 p-6 rounded-2xl border border-blue-500/10">
+                              <h4 className="text-xs font-black text-blue-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                <span>🌍</span> Local Trends
+                              </h4>
+                              <p className="text-sm text-foreground/80 leading-relaxed">{styleInsights.cultural_tips}</p>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}
 
-                  {/* No insights message */}
-                  {!clipInsights && (
-                    <div className="text-center py-8">
-                      <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
-                      <h3 className="text-lg font-semibold text-gray-700 mb-2">No AI Insights Available</h3>
-                      <p className="text-sm text-gray-600 mb-4">
-                        Upload a photo during signup to get personalized AI style insights
+                  {/* Empty State */}
+                  {!styleInsights && !isLoadingInsights && (
+                    <div className="bg-muted/20 rounded-3xl p-12 border border-dashed border-border text-center">
+                      <div className="mx-auto w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6">
+                        <svg className="w-8 h-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">Generate Your Style Guide</h3>
+                      <p className="text-sm text-muted-foreground mb-0 max-w-xs mx-auto">
+                        Personalized recommendations based on your unique profile and wardrobe.
                       </p>
+                    </div>
+                  )}
+
+                  {/* AI Predictions */}
+                  {clipInsights && (
+                    <div className="pt-8 border-t border-border">
+                      <div className="rounded-3xl bg-gradient-to-br from-muted/50 to-muted/20 p-8 border border-border shadow-lg mb-8 relative overflow-hidden group">
+                        <div className="absolute top-[-10%] right-[-5%] text-8xl opacity-[0.03] font-black group-hover:scale-110 transition-transform">AI</div>
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.3em]">
+                            Image Analysis
+                          </h3>
+                          <span className="text-[10px] font-black text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                            {aiInsights.topConfidence}% CONFIDENCE
+                          </span>
+                        </div>
+                        <p className="text-3xl font-black text-foreground capitalize">
+                          {aiInsights.topLabel}
+                        </p>
+                      </div>
+
+                      {aiInsights.topPredictions.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {aiInsights.topPredictions.map((pred: any, index: number) => (
+                            <div key={index} className="flex items-center justify-between p-4 rounded-xl bg-muted/10 border border-border hover:border-emerald-500/20 transition-all">
+                              <span className="text-sm font-bold text-foreground capitalize">{pred.label}</span>
+                              <div className="flex items-center gap-3">
+                                <div className="w-20 bg-muted rounded-full h-1.5 overflow-hidden">
+                                  <div className="bg-emerald-500 h-full rounded-full" style={{ width: `${pred.score}%` }}></div>
+                                </div>
+                                <span className="text-[10px] font-black text-muted-foreground w-8 text-right">{pred.score}%</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -1067,37 +988,40 @@ function ProfileContent() {
 
             {/* Quick Actions Section */}
             {activeSection === "quick-actions" && (
-              <div className="rounded-xl sm:rounded-2xl bg-white/95 backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-xl border border-white/20">
-                <h2 className="mb-6 text-2xl font-bold text-gray-900">
+              <div className="rounded-3xl bg-card p-6 sm:p-10 shadow-2xl border border-border transition-all duration-500">
+                <h2 className="mb-8 text-3xl font-black text-foreground tracking-tight">
                   Quick Actions
                 </h2>
 
-                <div className="space-y-3 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
                   <Link
                     href="/my-wardrobe"
-                    className="block w-full rounded-lg border border-gray-300 py-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="flex items-center justify-between w-full rounded-2xl border border-border px-6 py-5 text-base font-bold text-foreground hover:bg-muted hover:border-emerald-500 transition-all group"
                   >
-                    Open Wardrobe
+                    <span>Open Wardrobe</span>
+                    <svg className="w-5 h-5 text-muted-foreground group-hover:text-emerald-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
                   </Link>
                   <Link
                     href="/get-started"
-                    className="block w-full rounded-lg border border-gray-300 py-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="flex items-center justify-between w-full rounded-2xl border border-border px-6 py-5 text-base font-bold text-foreground hover:bg-muted hover:border-emerald-500 transition-all group"
                   >
-                    Generate Look
+                    <span>Generate Look</span>
+                    <svg className="w-5 h-5 text-muted-foreground group-hover:text-emerald-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
                   </Link>
-                  <button className="w-full rounded-lg border border-gray-300 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                    Download Profile
-                  </button>
                 </div>
 
                 {/* Stats */}
-                <div className="border-t border-gray-200 pt-6">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-sm text-gray-600">Total Items:</span>
-                    <span className="text-2xl font-bold text-gray-900"></span>
-                  </div>
-                  <div className="mt-2 text-sm text-gray-600">
-                    <span className="font-medium">Last upload:</span>
+                <div className="pt-10 border-t border-border">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-black text-muted-foreground uppercase tracking-widest mb-1">Wardrobe Status</p>
+                      <p className="text-base font-bold text-foreground">Items Analyzed</p>
+                    </div>
+                    <span className="text-5xl font-black text-emerald-600">0</span>
                   </div>
                 </div>
               </div>
