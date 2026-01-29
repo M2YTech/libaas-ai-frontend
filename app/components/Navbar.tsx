@@ -76,6 +76,7 @@ export default function Navbar() {
           <NavLink href="/">Home</NavLink>
           <NavLink href="/my-wardrobe">My Wardrobe</NavLink>
           <NavLink href="/get-started">Look Generator</NavLink>
+          <NavLink href="/profile">Profile</NavLink>
         </div>
 
         {/* Action Section (Desktop) */}
@@ -210,15 +211,15 @@ function ThemeToggle({ theme, toggleTheme }: { theme: string; toggleTheme: () =>
     <button
       onClick={toggleTheme}
       className={`relative flex h-9 w-16 items-center rounded-full p-1 transition-all duration-500 focus:outline-none shadow-lg ${theme === "dark"
-          ? "bg-emerald-950 border border-emerald-800"
-          : "bg-emerald-50 border border-emerald-100"
+        ? "bg-emerald-950 border border-emerald-800"
+        : "bg-emerald-50 border border-emerald-100"
         }`}
       aria-label="Toggle theme"
     >
       <div
         className={`flex h-7 w-7 transform items-center justify-center rounded-full shadow-md transition-all duration-500 ${theme === "dark"
-            ? "translate-x-7 bg-emerald-800 text-yellow-200 rotate-[360deg]"
-            : "translate-x-0 bg-white text-emerald-600"
+          ? "translate-x-7 bg-emerald-800 text-yellow-200 rotate-[360deg]"
+          : "translate-x-0 bg-white text-emerald-600"
           }`}
       >
         {theme === "dark" ? (
