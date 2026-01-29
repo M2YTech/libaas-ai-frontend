@@ -69,56 +69,62 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section className="w-full bg-white py-12 px-4 sm:py-16 sm:px-6 lg:py-20 lg:px-16">
-      <div className="mx-auto max-w-7xl">
+    <section className="w-full bg-background py-16 px-4 sm:py-20 sm:px-6 lg:py-24 lg:px-16 transition-colors duration-500">
+      <div className="mx-auto max-w-7xl relative">
         {/* Header */}
-        <div className="mb-10 sm:mb-12 lg:mb-16 text-center">
-          <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+        <div className="mb-16 sm:mb-20 lg:mb-24 text-center">
+          <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground">
             How It Works
           </h2>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base lg:text-lg leading-relaxed text-gray-600 px-4 sm:px-0">
+          <p className="mx-auto max-w-3xl text-base sm:text-lg lg:text-xl leading-relaxed text-muted-foreground px-4 sm:px-0">
             Three simple steps to transform your style experience with
             AI-powered fashion intelligence.
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-3 lg:gap-12">
+        <div className="grid grid-cols-1 gap-12 sm:gap-16 md:grid-cols-3 lg:gap-16 relative z-10">
           {steps.map((step, index) => (
-            <div key={index} className="relative bg-gray-200 py-6 px-10 shadow-lg rounded-2xl flex flex-col items-center">
-              {/* Connector Arrow - Only between steps on desktop */}
-              {/* {index < steps.length - 1 && (
-                <div className="absolute left-[60%] top-[70px] sm:top-[80px] hidden h-0.5 w-[80%] md:block">
-                  <div className="h-full w-full bg-gradient-to-r from-yellow-400 to-yellow-300"></div>
-                </div>
-              )} */}
+            <div key={index} className="relative group flex flex-col items-center">
+              {/* Connector (Desktop Only) */}
+              {index < steps.length - 1 && (
+                <div
+                  className="absolute left-[70%] top-[40px] hidden w-full h-[2px] bg-gradient-to-r from-emerald-500/50 via-emerald-500/10 to-transparent md:block z-0"
+                />
+              )}
 
-              {/* Step Number Badge - Mobile */}
-              <div className="absolute -top-2 left-1/2 -translate-x-1/2 md:hidden">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">
+              {/* Step Number Badge */}
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-600 dark:bg-emerald-500 text-lg font-black text-white shadow-2xl ring-4 ring-background transform transition-transform group-hover:scale-110">
                   {index + 1}
                 </span>
               </div>
 
-              {/* Icon Container */}
-              <div className="relative z-10 mb-4 sm:mb-6 flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-xl sm:rounded-2xl bg-gradient-to-br from-emerald-600 to-yellow-400 text-white transition-transform duration-300 hover:scale-110">
-                {step.icon}
-              </div>
+              {/* Card Container */}
+              <div className="w-full h-full bg-card p-10 rounded-3xl shadow-lg border border-border group-hover:border-emerald-500/50 transition-all duration-500 relative z-10 hover:shadow-2xl">
+                {/* Icon Container with Glow */}
+                <div className="relative mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-yellow-400 text-white shadow-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 mx-auto">
+                  <div className="absolute inset-0 bg-emerald-500 blur-2xl opacity-0 group-hover:opacity-30 transition-opacity"></div>
+                  {step.icon}
+                </div>
 
-              {/* Content */}
-              <div className="text-center px-4 sm:px-2">
-                <h3 className="mb-2 sm:mb-3 text-lg sm:text-xl font-bold text-gray-900">
-                  {step.title}
-                </h3>
-                <p className="text-sm sm:text-base leading-relaxed">
-                  {step.description}
-                </p>
+                {/* Content */}
+                <div className="text-center">
+                  <h3 className="mb-4 text-2xl font-black text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="text-lg leading-relaxed text-muted-foreground">
+                    {step.description}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Background Decorative Element */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
       </div>
     </section>
   );
 }
-

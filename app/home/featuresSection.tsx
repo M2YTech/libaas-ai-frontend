@@ -95,50 +95,50 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section className="w-full bg-gray-50 py-12 px-12">
-      <div className="mx-auto">
+    <section className="w-full bg-background py-16 px-4 sm:px-12 transition-colors duration-500">
+      <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-10 sm:mb-12 lg:mb-16 text-center">
-          <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">
+        <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
+          <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-foreground">
             Intelligent Features for Your Style Journey
           </h2>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base lg:text-lg leading-relaxed text-gray-600 px-4 sm:px-0">
+          <p className="mx-auto max-w-3xl text-base sm:text-lg lg:text-xl leading-relaxed text-muted-foreground px-4 sm:px-0">
             From wardrobe management to personalized recommendations, LibassAI
             brings the future of fashion to your fingertips.
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-2">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-white px-5 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-7 shadow-sm transition-all duration-300 hover:shadow-xl"
+              className="group relative overflow-hidden rounded-3xl bg-card p-8 sm:p-10 shadow-sm border border-border transition-all duration-300 hover:shadow-2xl hover:border-emerald-500/50"
             >
-              {/* Icon */}
-              <div className="mb-4 sm:mb-6 flex items-start justify-between">
+              {/* Icon & Phase */}
+              <div className="mb-8 flex items-start justify-between">
                 <div
-                  className={`flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-lg sm:rounded-xl ${feature.iconBg} text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                  className={`flex h-16 w-16 items-center justify-center rounded-2xl ${feature.iconBg} text-white shadow-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}
                 >
                   {feature.icon}
                 </div>
                 <span
-                  className={`text-xs sm:text-sm font-semibold ${feature.phaseColor} bg-yellow-50 px-2 py-1 rounded-full`}
+                  className={`text-sm font-bold ${feature.phaseColor} bg-yellow-400/10 border border-yellow-400/20 px-3 py-1 rounded-full uppercase tracking-widest`}
                 >
                   {feature.phase}
                 </span>
               </div>
 
               {/* Content */}
-              <h3 className="mb-2 sm:mb-3 text-lg sm:text-xl font-bold text-gray-900">
+              <h3 className="mb-4 text-2xl font-black text-foreground">
                 {feature.title}
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-gray-600">
+              <p className="text-lg leading-relaxed text-muted-foreground">
                 {feature.description}
               </p>
 
               {/* Hover Effect Border */}
-              <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-emerald-600 to-yellow-500 transition-all duration-300 group-hover:w-full"></div>
+              <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-gradient-to-r from-emerald-600 to-yellow-500 transition-all duration-500 group-hover:w-full"></div>
             </div>
           ))}
         </div>

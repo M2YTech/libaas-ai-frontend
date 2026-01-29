@@ -36,10 +36,10 @@ interface MarqueeProps {
 const Marquee = ({ children, direction = 'right', speed = 30, pauseOnHover = true }: MarqueeProps) => {
   return (
     <>
-      <div 
+      <div
         className="overflow-hidden w-full"
       >
-        <div 
+        <div
           className="flex w-max"
           style={{
             animation: `marquee-${direction} ${speed}s linear infinite`,
@@ -229,17 +229,21 @@ export default function Slider({
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-purple-50 via-white to-blue-50">
-      <div className="w-full">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+    <section className="py-20 px-4 bg-background transition-colors duration-500 overflow-hidden relative">
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/5 blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-yellow-500/5 blur-[120px] pointer-events-none"></div>
+
+      <div className="w-full max-w-[1600px] mx-auto relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-black text-foreground mb-6 tracking-tight">
             Style Transformations
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover versatile fashion styles powered by AI. Hover to see the transformation!
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Discover versatile fashion styles powered by AI.
+            <span className="text-emerald-600 dark:text-emerald-400 font-bold"> Hover to see the transformation!</span>
           </p>
         </div>
-        <div className="w-full bg-gray-200 px-2 py-2 rounded-lg">
+        <div className="w-full bg-muted/30 border border-border p-4 rounded-[40px] backdrop-blur-sm shadow-inner">
           <Marquee direction="right" speed={20} pauseOnHover={true}>
             {imagePairs.map((pair, index) => (
               <div
