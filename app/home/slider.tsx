@@ -25,6 +25,23 @@ import user16 from '../../public/assets/user-16.png';
 import user19 from '../../public/assets/user-19.jpg';
 import user20 from '../../public/assets/user-20.png';
 
+// Import NEW Mannan Style Transformation Series
+import mannanBase from '../../public/assets/Mannan_Base.jpeg';
+import mannaStyle1 from '../../public/assets/Manna_new_style1.png';
+import mannaStyle2 from '../../public/assets/Manna_new_style2.png';
+import mannaStyle3 from '../../public/assets/Manna_new_style3.png';
+import mannaStyle4 from '../../public/assets/Manna_new_style4.png';
+import mannaStyle5 from '../../public/assets/Manna_new_style5.png';
+import mannaStyle6 from '../../public/assets/Manna_new_style6.png';
+import mannaStyle7 from '../../public/assets/Manna_new_style7.png';
+import mannaStyle8 from '../../public/assets/Manna_new_style8.png';
+import mannaStyle9 from '../../public/assets/Manna_new_style9.png';
+import mannaStyle10 from '../../public/assets/Manna_new_style10.png';
+import mannaStyle11 from '../../public/assets/Manna_new_style11.png';
+import mannaStyle12 from '../../public/assets/Manna_new_style12.png';
+import mannaStyle13 from '../../public/assets/Manna_new_style13.png';
+import mannaStyle14 from '../../public/assets/Manna_new_style14.png';
+
 // Marquee Component - Continuous scrolling from left to right
 interface MarqueeProps {
   children: React.ReactNode;
@@ -197,13 +214,26 @@ const defaultImages: SliderImage[] = [
   },
 ];
 
+// Create Mannan Series Pairs (Base + Styles)
+const mannanStyles = [
+  mannaStyle1, mannaStyle2, mannaStyle3, mannaStyle4, mannaStyle5,
+  mannaStyle6, mannaStyle7, mannaStyle8, mannaStyle9, mannaStyle10,
+  mannaStyle11, mannaStyle12, mannaStyle13, mannaStyle14
+];
+
+const mannanPairs: ImagePair[] = mannanStyles.map((style, index) => ({
+  front: { src: mannanBase, alt: 'Base Image' },
+  back: { src: style, alt: `Transformation Style ${index + 1}` }
+}));
+
 // Create pairs of images for flip effect
 const createImagePairs = (images: SliderImage[]): ImagePair[] => {
   const pairs: ImagePair[] = [];
+  // Add original pairing logic as fallbacks/extras
   for (let i = 0; i < images.length; i += 2) {
     pairs.push({
       front: images[i],
-      back: images[i + 1] || images[0], // If odd number, loop back to first
+      back: images[i + 1] || images[0],
     });
   }
   return pairs;
@@ -214,7 +244,10 @@ export default function Slider({
   autoPlay = true,
   autoPlayInterval = 2000,
 }: SliderProps) {
-  const imagePairs = createImagePairs(images);
+  // Combine Mannan series with existing images
+  // Mannan series comes first as requested
+  const imagePairs = [...mannanPairs, ...createImagePairs(images)];
+
   // Track flip state for each image individually
   const [flippedStates, setFlippedStates] = useState<boolean[]>(
     new Array(imagePairs.length).fill(false)
