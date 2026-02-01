@@ -6,7 +6,7 @@ import heroImage from "../../public/assets/hero-wardrobe.jpg";
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full bg-gradient-to-br from-emerald-700 via-emerald-600 to-yellow-400 dark:from-gray-950 dark:via-gray-900 dark:to-emerald-950 overflow-hidden transition-colors duration-500">
+    <section className="relative w-full bg-gradient-to-br from-emerald-700 via-emerald-600 to-yellow-400 dark:from-gray-900 dark:via-slate-900 dark:to-slate-950 overflow-hidden transition-colors duration-500">
       <div className="mx-auto px-4 py-12 sm:px-6 sm:py-16 lg:px-16 lg:py-24 relative z-10">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left Content */}
