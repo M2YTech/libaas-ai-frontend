@@ -19,6 +19,7 @@ export const API_ENDPOINTS = {
     profile: (userId: string) => `${API_BASE_URL}/auth/profile/${userId}`,
     updateProfilePhoto: `${API_BASE_URL}/auth/update-profile-photo`,
     updateProfile: `${API_BASE_URL}/auth/update-profile`,
+    updateTheme: (userId: string) => `${API_BASE_URL}/auth/update-theme/${userId}`,
     styleInsights: (userId: string) => `${API_BASE_URL}/auth/style-insights/${userId}`,
   },
   wardrobe: {
