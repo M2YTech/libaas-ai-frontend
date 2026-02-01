@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-html:not(.dark) {
+/* Light Mode - Default */
+html:not(.dark),
+html:not(.dark) body {
   --background: #f8fafc;
   --foreground: #0f172a;
   --card: #ffffff;
@@ -13,16 +15,18 @@ html:not(.dark) {
   color-scheme: light;
 }
 
-html.dark {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --card: #1e293b;
-  --card-foreground: #f8fafc;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #1e293b;
-  --accent-foreground: #f8fafc;
-  --border: #334155;
+/* Dark Mode - Explicit */
+html.dark,
+html.dark body {
+  --background: #020617 !important;
+  --foreground: #f8fafc !important;
+  --card: #1e293b !important;
+  --card-foreground: #f8fafc !important;
+  --muted: #1e293b !important;
+  --muted-foreground: #94a3b8 !important;
+  --accent: #1e293b !important;
+  --accent-foreground: #f8fafc !important;
+  --border: #334155 !important;
   color-scheme: dark;
 }
 
@@ -39,8 +43,13 @@ html.dark {
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Force dark mode on all elements */
+html.dark * {
+  border-color: var(--border);
 }
