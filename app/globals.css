@@ -1,55 +1,60 @@
 @import "tailwindcss";
 
+/* Configure dark mode variant for Tailwind v4 */
+@custom-variant dark (.dark &);
+
 /* Light Mode - Default */
+:root,
 html:not(.dark),
 html:not(.dark) body {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
-  --border: #e2e8f0;
+  --background: 248 250 252;
+  --foreground: 15 23 42;
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+  --muted: 241 245 249;
+  --muted-foreground: 100 116 139;
+  --accent: 241 245 249;
+  --accent-foreground: 15 23 42;
+  --border: 226 232 240;
   color-scheme: light;
 }
 
 /* Dark Mode - Explicit */
+.dark,
 html.dark,
-html.dark body {
-  --background: #020617 !important;
-  --foreground: #f8fafc !important;
-  --card: #1e293b !important;
-  --card-foreground: #f8fafc !important;
-  --muted: #1e293b !important;
-  --muted-foreground: #94a3b8 !important;
-  --accent: #1e293b !important;
-  --accent-foreground: #f8fafc !important;
-  --border: #334155 !important;
-  color-scheme: dark;
+html.dark body,
+.dark * {
+  --background: 2 6 23 !important;
+  --foreground: 248 250 252 !important;
+  --card: 30 41 59 !important;
+  --card-foreground: 248 250 252 !important;
+  --muted: 30 41 59 !important;
+  --muted-foreground: 148 163 184 !important;
+  --accent: 30 41 59 !important;
+  --accent-foreground: 248 250 252 !important;
+  --border: 51 65 85 !important;
+  color-scheme: dark !important;
 }
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-border: var(--border);
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-border: rgb(var(--border));
+}
+
+* {
+  border-color: rgb(var(--border));
 }
 
 body {
-  background-color: var(--background) !important;
-  color: var(--foreground) !important;
+  background-color: rgb(var(--background)) !important;
+  color: rgb(var(--foreground)) !important;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Force dark mode on all elements */
-html.dark * {
-  border-color: var(--border);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
