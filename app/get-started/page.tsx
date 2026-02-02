@@ -272,46 +272,53 @@ export default function GetStartedPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/20 to-yellow-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/20 to-yellow-50/20 dark:from-gray-950 dark:via-slate-900 dark:to-emerald-950 relative overflow-hidden transition-colors duration-500">
+      {/* Animated Gradient Blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-emerald-300 dark:bg-emerald-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-96 h-96 bg-yellow-300 dark:bg-purple-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-rose-300 dark:bg-rose-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-4000"></div>
+      </div>
+
       {/* Main Content */}
-      <main className="mx-auto max-w-6xl px-4 sm:px-8 py-8 sm:py-12">
+      <main className="mx-auto max-w-6xl px-4 sm:px-8 py-8 sm:py-12 relative z-10">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-2">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
             AI Look Generator
           </h1>
-          <p className="text-base sm:text-lg text-gray-600">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300">
             Generate personalized outfit ideas based on your event details
           </p>
           {/* User Status */}
           {userId ? (
-            <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 border border-green-200">
-              <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-sm text-green-700 font-medium">Ready to generate looks</span>
+            <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 dark:bg-emerald-900/30 border border-green-200 dark:border-emerald-800/50">
+              <div className="h-2 w-2 rounded-full bg-green-500 dark:bg-emerald-400 animate-pulse"></div>
+              <span className="text-sm text-green-700 dark:text-emerald-300 font-medium">Ready to generate looks</span>
             </div>
           ) : (
-            <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200">
-              <span className="text-sm text-amber-700 font-medium">
-                Please <Link href="/signin" className="underline hover:text-amber-900">sign in</Link> first
+            <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800/50">
+              <span className="text-sm text-amber-700 dark:text-amber-300 font-medium">
+                Please <Link href="/signin" className="underline hover:text-amber-900 dark:hover:text-amber-200">sign in</Link> first
               </span>
             </div>
           )}
         </div>
 
         {/* Event Form */}
-        <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm border border-gray-100 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Event Details</h2>
+        <div className="rounded-2xl bg-white dark:bg-slate-900/60 backdrop-blur-xl p-4 sm:p-6 shadow-sm dark:shadow-2xl border border-gray-100 dark:border-slate-700/50 mb-8 transition-all duration-300">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Event Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-900">Event Type</label>
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-300">Event Type</label>
               <select
                 name="eventType"
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-2.5 text-gray-900 transition-colors focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-slate-700 px-4 py-2.5 text-gray-900 dark:text-white bg-white dark:bg-slate-800/50 transition-colors focus:border-emerald-600 dark:focus:border-emerald-500 focus:outline-none"
                 onChange={handleChange}
                 value={form.eventType}
               >
                 {eventTypes.map((event) => (
-                  <option key={event.id} value={event.id}>
+                  <option key={event.id} value={event.id} className="dark:bg-slate-800">
                     {event.name}
                   </option>
                 ))}
@@ -319,79 +326,79 @@ export default function GetStartedPage() {
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-900">Event Venue</label>
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-300">Event Venue</label>
               <input
                 name="eventVenue"
                 placeholder="e.g., Garden, Hotel, Restaurant"
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-2.5 text-gray-900 transition-colors focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-slate-700 px-4 py-2.5 text-gray-900 dark:text-white bg-white dark:bg-slate-800/50 transition-colors focus:border-emerald-600 dark:focus:border-emerald-500 focus:outline-none placeholder-gray-400 dark:placeholder-slate-500"
                 onChange={handleChange}
                 value={form.eventVenue}
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-900">Event Time</label>
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-300">Event Time</label>
               <select
                 name="eventTime"
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-2.5 text-gray-900 transition-colors focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-slate-700 px-4 py-2.5 text-gray-900 dark:text-white bg-white dark:bg-slate-800/50 transition-colors focus:border-emerald-600 dark:focus:border-emerald-500 focus:outline-none"
                 onChange={handleChange}
                 value={form.eventTime}
               >
-                <option value="morning">Morning</option>
-                <option value="afternoon">Afternoon</option>
-                <option value="evening">Evening</option>
-                <option value="night">Night</option>
+                <option value="morning" className="dark:bg-slate-800">Morning</option>
+                <option value="afternoon" className="dark:bg-slate-800">Afternoon</option>
+                <option value="evening" className="dark:bg-slate-800">Evening</option>
+                <option value="night" className="dark:bg-slate-800">Night</option>
               </select>
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-900">Weather/Season</label>
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-300">Weather/Season</label>
               <input
                 name="weather"
                 placeholder="e.g., Summer, Winter, Rainy"
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-2.5 text-gray-900 transition-colors focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-slate-700 px-4 py-2.5 text-gray-900 dark:text-white bg-white dark:bg-slate-800/50 transition-colors focus:border-emerald-600 dark:focus:border-emerald-500 focus:outline-none placeholder-gray-400 dark:placeholder-slate-500"
                 onChange={handleChange}
                 value={form.weather}
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-900">Theme</label>
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-300">Theme</label>
               <input
                 name="theme"
                 placeholder="e.g., Desi, Formal, Elite, Casual"
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-2.5 text-gray-900 transition-colors focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-slate-700 px-4 py-2.5 text-gray-900 dark:text-white bg-white dark:bg-slate-800/50 transition-colors focus:border-emerald-600 dark:focus:border-emerald-500 focus:outline-none placeholder-gray-400 dark:placeholder-slate-500"
                 onChange={handleChange}
                 value={form.theme}
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-900">Number of Outfits</label>
+              <label className="mb-2 block text-sm font-semibold text-gray-900 dark:text-gray-300">Number of Outfits</label>
               <select
                 name="numberOfOutfits"
-                className="w-full rounded-lg border-2 border-gray-200 px-4 py-2.5 text-gray-900 transition-colors focus:border-emerald-600 focus:outline-none"
+                className="w-full rounded-lg border-2 border-gray-200 dark:border-slate-700 px-4 py-2.5 text-gray-900 dark:text-white bg-white dark:bg-slate-800/50 transition-colors focus:border-emerald-600 dark:focus:border-emerald-500 focus:outline-none"
                 onChange={handleChange}
                 value={form.numberOfOutfits}
               >
-                <option value={3}>3 Outfits</option>
-                <option value={5}>5 Outfits</option>
-                <option value={7}>7 Outfits</option>
+                <option value={3} className="dark:bg-slate-800">3 Outfits</option>
+                <option value={5} className="dark:bg-slate-800">5 Outfits</option>
+                <option value={7} className="dark:bg-slate-800">7 Outfits</option>
               </select>
             </div>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mt-4 rounded-lg bg-red-50 border border-red-200 p-4">
-              <p className="text-sm text-red-700">{error}</p>
+            <div className="mt-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50 p-4">
+              <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
             </div>
           )}
 
           <button
             onClick={generateOutfits}
             disabled={loading || !userId}
-            className="mt-6 w-full md:w-auto rounded-xl bg-gradient-to-r from-emerald-600 to-yellow-500 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mt-6 w-full md:w-auto rounded-xl bg-gradient-to-r from-emerald-600 to-yellow-500 hover:from-emerald-500 hover:to-yellow-400 dark:from-emerald-600 dark:to-yellow-600 dark:hover:from-emerald-500 dark:hover:to-yellow-500 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <span className="flex items-center justify-center gap-2">
@@ -411,10 +418,10 @@ export default function GetStartedPage() {
         {outfits.length > 0 && (
           <div className="mb-8">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Your Outfit Suggestions
               </h2>
-              <span className="text-sm text-gray-500">Sorted by wardrobe match</span>
+              <span className="text-sm text-gray-500 dark:text-gray-400">Sorted by wardrobe match</span>
             </div>
             <div className="space-y-4">
               {outfits.map((outfit, index) => {
@@ -423,32 +430,32 @@ export default function GetStartedPage() {
                   <div
                     key={outfit.id}
                     onClick={() => handleCardClick(outfit)}
-                    className="group relative overflow-hidden rounded-xl bg-white border-2 border-gray-200 hover:border-emerald-400 cursor-pointer transition-all duration-300 hover:shadow-lg"
+                    className="group relative overflow-hidden rounded-xl bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500/50 cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.01]"
                   >
                     <div className="flex items-center gap-4 p-5">
                       {/* Left: Number Badge */}
                       <div className="flex-shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-yellow-500 flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-yellow-500 dark:from-emerald-600 dark:to-yellow-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
                           {index + 1}
                         </div>
                       </div>
 
                       {/* Middle: Content */}
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-emerald-700 transition-colors">
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                           {outfit.title}
                         </h3>
-                        <p className="text-sm text-gray-600 line-clamp-1">
+                        <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-1">
                           {outfit.description}
                         </p>
                         <div className="flex items-center gap-2 mt-2">
-                          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-medium">
+                          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-medium border border-emerald-100 dark:border-emerald-800/30">
                             <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                             {percentage >= 80 ? 'Highly Available' : percentage >= 50 ? 'Mostly Available' : 'Partially Available'}
                           </span>
-                          <span className="text-xs text-gray-500">Click to view details</span>
+                          <span className="text-xs text-gray-500 dark:text-gray-400">Click to view details</span>
                         </div>
                       </div>
 
@@ -458,7 +465,7 @@ export default function GetStartedPage() {
                       </div>
 
                       {/* Chevron Icon */}
-                      <div className="flex-shrink-0 text-gray-400 group-hover:text-emerald-600 transition-colors">
+                      <div className="flex-shrink-0 text-gray-400 dark:text-slate-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
@@ -477,15 +484,15 @@ export default function GetStartedPage() {
 
         {/* Detail Modal */}
         {showDetailModal && selectedOutfit && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setShowDetailModal(false)}>
-            <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setShowDetailModal(false)}>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 dark:border-slate-700" onClick={(e) => e.stopPropagation()}>
               {/* Modal Header */}
-              <div className="sticky top-0 bg-gradient-to-br from-emerald-500 to-emerald-600 p-6 rounded-t-2xl z-10">
+              <div className="sticky top-0 bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-800 p-6 rounded-t-2xl z-10">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold text-white mb-2">{selectedOutfit.title}</h2>
                     <div className="flex items-center gap-3">
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium">
+                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium border border-white/10">
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
@@ -526,21 +533,21 @@ export default function GetStartedPage() {
                   return (
                     <div key={key} className="group/section">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 rounded-lg bg-emerald-100 text-emerald-700">
+                        <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300">
                           {getCategoryIcon(key)}
                         </div>
-                        <h4 className="text-base font-bold text-gray-900 uppercase tracking-wide">
+                        <h4 className="text-base font-bold text-gray-900 dark:text-white uppercase tracking-wide">
                           {key}
                         </h4>
                       </div>
 
                       <div className="ml-12 space-y-2">
                         {headerItem && (
-                          <div className="font-medium text-gray-900 mb-1">{headerItem}</div>
+                          <div className="font-medium text-gray-900 dark:text-gray-200 mb-1">{headerItem}</div>
                         )}
 
                         {items.map((item, idx) => (
-                          <div key={idx} className="flex items-start gap-2 text-sm text-gray-700 leading-relaxed">
+                          <div key={idx} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                             <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-emerald-500" />
                             <span>{item}</span>
                           </div>
@@ -548,8 +555,8 @@ export default function GetStartedPage() {
 
                         {/* Wardrobe Match Badge */}
                         {wardrobeMatch && (
-                          <div className="mt-4 p-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-xl border border-emerald-100 flex items-center gap-4 group-hover/section:border-emerald-200 transition-colors">
-                            <div className="h-16 w-16 flex-shrink-0 rounded-lg overflow-hidden bg-white border border-gray-200 shadow-sm relative">
+                          <div className="mt-4 p-3 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/10 dark:to-teal-900/10 rounded-xl border border-emerald-100 dark:border-emerald-800/30 flex items-center gap-4 group-hover/section:border-emerald-200 dark:group-hover/section:border-emerald-700/50 transition-colors">
+                            <div className="h-16 w-16 flex-shrink-0 rounded-lg overflow-hidden bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow-sm relative">
                               <img
                                 src={wardrobeMatch.image_url}
                                 alt={wardrobeMatch.name}
@@ -559,14 +566,14 @@ export default function GetStartedPage() {
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full ring-1 ring-emerald-600/20">
+                                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/40 px-2 py-0.5 rounded-full ring-1 ring-emerald-600/20">
                                   Match Found
                                 </span>
                               </div>
-                              <p className="text-sm font-semibold text-gray-900">
+                              <p className="text-sm font-semibold text-gray-900 dark:text-white">
                                 Use your: {wardrobeMatch.name}
                               </p>
-                              <p className="text-xs text-gray-500 mt-0.5">
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                                 {wardrobeMatch.category} • {wardrobeMatch.color}
                               </p>
                             </div>
@@ -579,10 +586,10 @@ export default function GetStartedPage() {
               </div>
 
               {/* Modal Footer */}
-              <div className="sticky bottom-0 bg-gray-50 p-6 rounded-b-2xl border-t border-gray-100 z-10">
+              <div className="sticky bottom-0 bg-gray-50 dark:bg-slate-900/90 backdrop-blur p-6 rounded-b-2xl border-t border-gray-100 dark:border-slate-700 z-10">
                 <button
                   onClick={(e) => handleCopyPrompt(selectedOutfit.full_text_prompt, e)}
-                  className="w-full flex items-center justify-center gap-2 py-4 px-8 bg-white border border-gray-200 rounded-xl text-base font-semibold text-gray-700 hover:bg-gray-50 hover:text-emerald-600 transition-colors shadow-sm"
+                  className="w-full flex items-center justify-center gap-2 py-4 px-8 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-600 rounded-xl text-base font-semibold text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors shadow-sm"
                 >
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
@@ -596,13 +603,13 @@ export default function GetStartedPage() {
 
         {/* Generated Image Modal */}
         {generatedImage && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setGeneratedImage(null)}>
-            <div className="bg-white rounded-2xl max-w-4xl w-full p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50" onClick={() => setGeneratedImage(null)}>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-4xl w-full p-6 shadow-2xl border border-gray-100 dark:border-slate-700" onClick={(e) => e.stopPropagation()}>
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-gray-900">Generated Look</h2>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Generated Look</h2>
                 <button
                   onClick={() => setGeneratedImage(null)}
-                  className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+                  className="p-2 rounded-full bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
                 >
                   <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -621,7 +628,7 @@ export default function GetStartedPage() {
                   link.download = 'libaasai-look.png';
                   link.click();
                 }}
-                className="w-full rounded-lg border-2 border-emerald-600 px-6 py-3 text-sm font-medium text-emerald-600 transition-colors hover:bg-emerald-50"
+                className="w-full rounded-lg border-2 border-emerald-600 px-6 py-3 text-sm font-medium text-emerald-600 dark:text-emerald-400 transition-colors hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
               >
                 Download Image
               </button>
@@ -632,11 +639,11 @@ export default function GetStartedPage() {
         {/* Empty State */}
         {
           outfits.length === 0 && !loading && (
-            <div className="rounded-2xl border-2 border-dashed border-gray-200 bg-white p-16 text-center">
-              <h3 className="mb-2 text-xl font-semibold text-gray-900">
+            <div className="rounded-2xl border-2 border-dashed border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900/40 p-16 text-center">
+              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
                 Ready to Generate Your Perfect Look?
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 Fill in the event details above and click Generate to get AI-powered outfit suggestions
               </p>
             </div>
