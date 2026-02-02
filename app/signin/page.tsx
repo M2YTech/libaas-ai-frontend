@@ -70,9 +70,9 @@ export default function SignInPage() {
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       {/* Animated Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-yellow-50 to-rose-50 dark:from-gray-950 dark:via-slate-900 dark:to-emerald-950 transition-colors duration-500">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-300 dark:bg-emerald-900/30 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 dark:bg-purple-900/30 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-rose-300 dark:bg-blue-900/30 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-300 dark:bg-emerald-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 dark:bg-purple-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-rose-300 dark:bg-rose-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="w-full max-w-md relative z-10">
