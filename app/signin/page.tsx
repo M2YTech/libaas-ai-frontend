@@ -69,19 +69,19 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-yellow-50 to-rose-50">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-rose-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-yellow-50 to-rose-50 dark:from-gray-950 dark:via-slate-900 dark:to-emerald-950 transition-colors duration-500">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-300 dark:bg-emerald-900/30 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 dark:bg-purple-900/30 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-rose-300 dark:bg-blue-900/30 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="w-full max-w-md relative z-10">
         {/* Header with Animation */}
         <div className="mb-8 text-center animate-fade-in-down">
-          <h1 className="mb-3 text-4xl font-bold bg-gradient-to-r from-emerald-600 to-yellow-600 bg-clip-text text-transparent">
+          <h1 className="mb-3 text-4xl font-bold bg-gradient-to-r from-emerald-600 to-yellow-600 dark:from-emerald-400 dark:to-yellow-300 bg-clip-text text-transparent">
             Welcome Back
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
             Sign in to continue your styling journey
           </p>
         </div>
@@ -89,14 +89,14 @@ export default function SignInPage() {
         {/* Form with Glass Morphism Effect */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-3xl bg-white/80 backdrop-blur-xl p-8 shadow-2xl border border-white/20 animate-fade-in-up"
+          className="rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl p-8 shadow-2xl border border-white/20 dark:border-slate-700/50 animate-fade-in-up transition-colors duration-300"
         >
           {/* Error Message */}
           {error && (
-            <div className="mb-5 rounded-xl bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 p-4 animate-shake">
+            <div className="mb-5 rounded-xl bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 border-2 border-red-200 dark:border-red-800 p-4 animate-shake">
               <div className="flex items-start gap-3">
                 <svg
-                  className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5"
+                  className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -108,7 +108,7 @@ export default function SignInPage() {
                     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <p className="text-sm font-semibold text-red-800">{error}</p>
+                <p className="text-sm font-semibold text-red-800 dark:text-red-200">{error}</p>
               </div>
             </div>
           )}
@@ -117,14 +117,14 @@ export default function SignInPage() {
           <div className="mb-5 group">
             <label
               htmlFor="email"
-              className="mb-2 block text-sm font-semibold text-gray-700 transition-colors group-focus-within:text-emerald-600"
+              className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors group-focus-within:text-emerald-600 dark:group-focus-within:text-emerald-400"
             >
               Email Address
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors"
+                  className="h-5 w-5 text-gray-400 dark:text-slate-500 group-focus-within:text-emerald-500 dark:group-focus-within:text-emerald-400 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -144,7 +144,7 @@ export default function SignInPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="example@gmail.com"
                 required
-                className="w-full rounded-xl border-2 border-gray-200 pl-12 pr-4 py-3.5 text-gray-900 placeholder-gray-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200 bg-gray-50/50 hover:bg-white"
+                className="w-full rounded-xl border-2 border-gray-200 dark:border-slate-700 pl-12 pr-4 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:focus:ring-emerald-500/20 transition-all duration-200 bg-gray-50/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800"
               />
             </div>
           </div>
@@ -153,14 +153,14 @@ export default function SignInPage() {
           <div className="mb-5 group">
             <label
               htmlFor="password"
-              className="mb-2 block text-sm font-semibold text-gray-700 transition-colors group-focus-within:text-emerald-600"
+              className="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors group-focus-within:text-emerald-600 dark:group-focus-within:text-emerald-400"
             >
               Password
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors"
+                  className="h-5 w-5 text-gray-400 dark:text-slate-500 group-focus-within:text-emerald-500 dark:group-focus-within:text-emerald-400 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -180,12 +180,12 @@ export default function SignInPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
                 required
-                className="w-full rounded-xl border-2 border-gray-200 pl-12 pr-12 py-3.5 text-gray-900 placeholder-gray-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200 bg-gray-50/50 hover:bg-white"
+                className="w-full rounded-xl border-2 border-gray-200 dark:border-slate-700 pl-12 pr-12 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:focus:ring-emerald-500/20 transition-all duration-200 bg-gray-50/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-emerald-600 focus:outline-none transition-colors duration-200"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 focus:outline-none transition-colors duration-200"
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
@@ -234,13 +234,13 @@ export default function SignInPage() {
                 type="checkbox"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="h-4 w-4 rounded-md border-2 border-gray-300 text-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all cursor-pointer"
+                className="h-4 w-4 rounded-md border-2 border-gray-300 dark:border-slate-600 dark:bg-slate-800 text-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 transition-all cursor-pointer"
               />
-              <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-600 transition-colors">Remember me</span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Remember me</span>
             </label>
             <Link
               href="/forgot-password"
-              className="text-sm font-semibold text-emerald-600 hover:text-emerald-700 hover:underline transition-all"
+              className="text-sm font-semibold text-emerald-600 dark:text-emerald-500 hover:text-emerald-700 dark:hover:text-emerald-400 hover:underline transition-all"
             >
               Forgot password?
             </Link>
@@ -250,10 +250,10 @@ export default function SignInPage() {
           <button
             type="submit"
             disabled={!email || !password || loading}
-            className="mb-4 w-full relative group rounded-xl py-4 text-lg font-bold text-white transition-all duration-300 disabled:cursor-not-allowed overflow-hidden"
+            className="mb-4 w-full relative group rounded-xl py-4 text-lg font-bold text-white transition-all duration-300 disabled:cursor-not-allowed overflow-hidden shadow-lg shadow-emerald-500/20 dark:shadow-emerald-900/40"
           >
-            <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-yellow-500 transition-all duration-300 ${!email || !password || loading ? 'opacity-40' : 'group-hover:scale-105'}`}></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-yellow-500 dark:from-emerald-700 dark:to-emerald-600 transition-all duration-300 ${!email || !password || loading ? 'opacity-40' : 'group-hover:scale-105'}`}></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400 dark:from-emerald-500 dark:to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative flex items-center justify-center gap-2">
               {loading ? (
                 <>
@@ -303,10 +303,10 @@ export default function SignInPage() {
           {/* Divider */}
           <div className="relative mb-4">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t-2 border-gray-200"></div>
+              <div className="w-full border-t-2 border-gray-200 dark:border-slate-700"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="bg-white/80 backdrop-blur-xl px-4 py-1 text-gray-500 font-medium rounded-full border border-gray-200">
+              <span className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl px-4 py-1 text-gray-500 dark:text-gray-400 font-medium rounded-full border border-gray-200 dark:border-slate-700">
                 Or continue with
               </span>
             </div>
@@ -316,7 +316,7 @@ export default function SignInPage() {
           <div className="grid grid-cols-2 gap-4 mb-6">
             <button
               type="button"
-              className="group relative flex items-center justify-center gap-2 rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              className="group relative flex items-center justify-center gap-2 rounded-xl border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-emerald-300 dark:hover:border-emerald-500/50 hover:shadow-lg dark:hover:bg-slate-800 hover:-translate-y-0.5 transition-all duration-200"
             >
               <svg className="h-5 w-5" viewBox="0 0 24 24">
                 <path
@@ -340,7 +340,7 @@ export default function SignInPage() {
             </button>
             <button
               type="button"
-              className="group relative flex items-center justify-center gap-2 rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm font-semibold text-gray-700 hover:border-blue-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+              className="group relative flex items-center justify-center gap-2 rounded-xl border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:border-blue-300 dark:hover:border-blue-500/50 hover:shadow-lg dark:hover:bg-slate-800 hover:-translate-y-0.5 transition-all duration-200"
             >
               <svg className="h-5 w-5" fill="#1877F2" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -351,11 +351,11 @@ export default function SignInPage() {
 
           {/* Sign Up Link */}
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Don't have an account?{" "}
               <Link
                 href="/signup"
-                className="font-bold text-transparent bg-gradient-to-r from-emerald-600 to-yellow-600 bg-clip-text hover:from-emerald-500 hover:to-yellow-500 transition-all"
+                className="font-bold text-transparent bg-gradient-to-r from-emerald-600 to-yellow-600 dark:from-emerald-400 dark:to-yellow-400 bg-clip-text hover:from-emerald-500 hover:to-yellow-500 transition-all"
               >
                 Create account →
               </Link>
@@ -366,7 +366,7 @@ export default function SignInPage() {
         {/* Footer Note */}
         <div className="mt-8 text-center space-y-4 animate-fade-in">
           <div className="flex items-center justify-center gap-6 text-sm">
-            <p className="flex items-center gap-2 text-gray-600">
+            <p className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
               <svg
                 className="h-5 w-5 text-emerald-500"
                 fill="none"
