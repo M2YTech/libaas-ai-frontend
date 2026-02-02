@@ -231,19 +231,19 @@ export default function SignUpPage() {
   return (
     <div className="min-h-screen relative overflow-hidden py-8 px-4 sm:py-12 sm:px-6 lg:px-8">
       {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-yellow-50 to-rose-50">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-rose-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-yellow-50 to-rose-50 dark:from-gray-950 dark:via-slate-900 dark:to-emerald-950 transition-colors duration-500">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-300 dark:bg-emerald-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 dark:bg-purple-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-rose-300 dark:bg-rose-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="mx-auto max-w-2xl relative z-10">
         {/* Header with Animation */}
         <div className="mb-6 sm:mb-8 text-center animate-fade-in-down">
-          <h1 className="mb-2 sm:mb-3 text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-yellow-600 bg-clip-text text-transparent">
+          <h1 className="mb-2 sm:mb-3 text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-yellow-600 dark:from-emerald-400 dark:to-yellow-300 bg-clip-text text-transparent">
             Create Your Account
           </h1>
-          <p className="text-base sm:text-lg text-gray-600 px-4 sm:px-0">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 px-4 sm:px-0">
             Start your personalized styling journey with LibaasAI
           </p>
         </div>
@@ -251,20 +251,20 @@ export default function SignUpPage() {
         {/* Form with Glass Morphism */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl sm:rounded-3xl bg-white/80 backdrop-blur-xl p-5 sm:p-6 lg:p-8 shadow-2xl border border-white/20 animate-fade-in-up"
+          className="rounded-2xl sm:rounded-3xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl p-5 sm:p-6 lg:p-8 shadow-2xl border border-white/20 dark:border-slate-700/50 animate-fade-in-up transition-colors duration-300"
         >
           {/* Full Name */}
           <div className="mb-5 sm:mb-6 group">
             <label
               htmlFor="fullName"
-              className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 transition-colors group-focus-within:text-emerald-600"
+              className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors group-focus-within:text-emerald-600 dark:group-focus-within:text-emerald-400"
             >
               Full Name <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors"
+                  className="h-5 w-5 text-gray-400 dark:text-slate-500 group-focus-within:text-emerald-500 dark:group-focus-within:text-emerald-400 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -284,7 +284,7 @@ export default function SignUpPage() {
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Enter your name"
                 required
-                className="w-full rounded-xl border-2 border-gray-200 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-gray-900 placeholder-gray-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200 bg-gray-50/50 hover:bg-white"
+                className="w-full rounded-xl border-2 border-gray-200 dark:border-slate-700 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:focus:ring-emerald-500/20 transition-all duration-200 bg-gray-50/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800"
               />
             </div>
           </div>
@@ -293,14 +293,14 @@ export default function SignUpPage() {
           <div className="mb-5 sm:mb-6 group">
             <label
               htmlFor="email"
-              className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 transition-colors group-focus-within:text-emerald-600"
+              className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors group-focus-within:text-emerald-600 dark:group-focus-within:text-emerald-400"
             >
               Email Address <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors"
+                  className="h-5 w-5 text-gray-400 dark:text-slate-500 group-focus-within:text-emerald-500 dark:group-focus-within:text-emerald-400 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -320,7 +320,7 @@ export default function SignUpPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="example@gmail.com"
                 required
-                className="w-full rounded-xl border-2 border-gray-200 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-gray-900 placeholder-gray-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200 bg-gray-50/50 hover:bg-white"
+                className="w-full rounded-xl border-2 border-gray-200 dark:border-slate-700 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:focus:ring-emerald-500/20 transition-all duration-200 bg-gray-50/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800"
               />
             </div>
           </div>
@@ -329,14 +329,14 @@ export default function SignUpPage() {
           <div className="mb-5 sm:mb-6 group">
             <label
               htmlFor="password"
-              className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 transition-colors group-focus-within:text-emerald-600"
+              className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors group-focus-within:text-emerald-600 dark:group-focus-within:text-emerald-400"
             >
               Password <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                 <svg
-                  className="h-5 w-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors"
+                  className="h-5 w-5 text-gray-400 dark:text-slate-500 group-focus-within:text-emerald-500 dark:group-focus-within:text-emerald-400 transition-colors"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -356,14 +356,14 @@ export default function SignUpPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Create a strong password"
                 required
-                className="w-full rounded-xl border-2 border-gray-200 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-gray-900 placeholder-gray-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200 bg-gray-50/50 hover:bg-white"
+                className="w-full rounded-xl border-2 border-gray-200 dark:border-slate-700 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3.5 text-sm sm:text-base text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:focus:ring-emerald-500/20 transition-all duration-200 bg-gray-50/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800"
               />
             </div>
           </div>
 
           {/* Gender */}
           <div className="mb-5 sm:mb-6">
-            <label className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700">
+            <label className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
               Gender <span className="text-red-500">*</span>
             </label>
             <div className="grid grid-cols-3 gap-2 sm:gap-4">
@@ -373,14 +373,14 @@ export default function SignUpPage() {
                   type="button"
                   onClick={() => setGender(option.id)}
                   className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-3 sm:p-4 transition-all duration-200 ${gender === option.id
-                    ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
-                    : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
+                    ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 dark:from-emerald-900/40 dark:to-yellow-900/40 shadow-md scale-105"
+                    : "border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:border-emerald-300 dark:hover:border-emerald-500/50 hover:shadow-lg dark:hover:bg-slate-800 hover:-translate-y-0.5"
                     }`}
                 >
                   <div className="scale-75 sm:scale-100">
                     {option.icon}
                   </div>
-                  <span className="text-xs sm:text-sm font-semibold text-gray-900">
+                  <span className={`text-xs sm:text-sm font-semibold ${gender === option.id ? "text-gray-900 dark:text-white" : "text-gray-900 dark:text-gray-300"}`}>
                     {option.name}
                   </span>
                 </button>
@@ -392,12 +392,12 @@ export default function SignUpPage() {
           <button
             type="button"
             onClick={() => setShowOptionalDetails(!showOptionalDetails)}
-            className="mb-5 sm:mb-6 w-full flex items-center justify-between rounded-xl bg-gradient-to-r from-yellow-50 to-emerald-50 p-3 sm:p-4 text-left transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border-2 border-yellow-200/50"
+            className="mb-5 sm:mb-6 w-full flex items-center justify-between rounded-xl bg-gradient-to-r from-yellow-50 to-emerald-50 dark:from-yellow-900/20 dark:to-emerald-900/20 p-3 sm:p-4 text-left transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 border-2 border-yellow-200/50 dark:border-yellow-700/30"
           >
             <div className="flex items-center gap-2 sm:gap-3">
               <div className="flex-shrink-0">
                 <svg
-                  className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-600"
+                  className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-600 dark:text-yellow-500"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -411,16 +411,16 @@ export default function SignUpPage() {
                 </svg>
               </div>
               <div>
-                <p className="text-sm sm:text-base font-bold text-gray-900">
+                <p className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">
                   {showOptionalDetails ? "Hide" : "Show"} Optional Details
                 </p>
-                <p className="text-xs sm:text-sm text-gray-600">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                   Get better AI recommendations
                 </p>
               </div>
             </div>
             <svg
-              className={`h-4 w-4 sm:h-5 sm:w-5 text-gray-700 transition-transform duration-300 ${showOptionalDetails ? "rotate-180" : ""
+              className={`h-4 w-4 sm:h-5 sm:w-5 text-gray-700 dark:text-gray-400 transition-transform duration-300 ${showOptionalDetails ? "rotate-180" : ""
                 }`}
               fill="none"
               viewBox="0 0 24 24"
@@ -437,19 +437,19 @@ export default function SignUpPage() {
 
           {/* Optional Details */}
           {showOptionalDetails && (
-            <div className="mb-5 sm:mb-6 space-y-4 sm:space-y-6 rounded-xl bg-gradient-to-br from-gray-50 to-white p-4 sm:p-6 border-2 border-gray-100 animate-fade-in">
+            <div className="mb-5 sm:mb-6 space-y-4 sm:space-y-6 rounded-xl bg-gradient-to-br from-gray-50 to-white dark:from-slate-800/50 dark:to-slate-900/50 p-4 sm:p-6 border-2 border-gray-100 dark:border-slate-700 animate-fade-in">
               {/* Height */}
               <div className="group">
                 <label
                   htmlFor="height"
-                  className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 transition-colors group-focus-within:text-emerald-600"
+                  className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors group-focus-within:text-emerald-600 dark:group-focus-within:text-emerald-400"
                 >
                   Height (Optional)
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                     <svg
-                      className="h-5 w-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors"
+                      className="h-5 w-5 text-gray-400 dark:text-slate-500 group-focus-within:text-emerald-500 dark:group-focus-within:text-emerald-400 transition-colors"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -468,7 +468,7 @@ export default function SignUpPage() {
                     value={height}
                     onChange={(e) => setHeight(e.target.value)}
                     placeholder="Enter your height in cm"
-                    className="w-full rounded-xl border-2 border-gray-200 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base text-gray-900 placeholder-gray-400 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200 bg-white hover:border-gray-300"
+                    className="w-full rounded-xl border-2 border-gray-200 dark:border-slate-600 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:focus:ring-emerald-500/20 transition-all duration-200 bg-white dark:bg-slate-800 hover:border-gray-300 dark:hover:border-slate-500"
                   />
                 </div>
               </div>
@@ -477,14 +477,14 @@ export default function SignUpPage() {
               <div className="group">
                 <label
                   htmlFor="country"
-                  className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 transition-colors group-focus-within:text-emerald-600"
+                  className="mb-2 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 transition-colors group-focus-within:text-emerald-600 dark:group-focus-within:text-emerald-400"
                 >
                   Country (Optional)
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
                     <svg
-                      className="h-5 w-5 text-gray-400 group-focus-within:text-emerald-500 transition-colors"
+                      className="h-5 w-5 text-gray-400 dark:text-slate-500 group-focus-within:text-emerald-500 dark:group-focus-within:text-emerald-400 transition-colors"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -501,7 +501,7 @@ export default function SignUpPage() {
                     id="country"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    className="w-full rounded-xl border-2 border-gray-200 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base text-gray-900 focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all duration-200 bg-white hover:border-gray-300 appearance-none cursor-pointer"
+                    className="w-full rounded-xl border-2 border-gray-200 dark:border-slate-600 pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base text-gray-900 dark:text-white focus:border-emerald-500 dark:focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/10 dark:focus:ring-emerald-500/20 transition-all duration-200 bg-white dark:bg-slate-800 hover:border-gray-300 dark:hover:border-slate-500 appearance-none cursor-pointer"
                   >
                     {countries.map((c) => (
                       <option key={c} value={c}>
@@ -510,7 +510,7 @@ export default function SignUpPage() {
                     ))}
                   </select>
                   <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                    <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="h-5 w-5 text-gray-400 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </div>
@@ -519,7 +519,7 @@ export default function SignUpPage() {
 
               {/* Body Shape */}
               <div>
-                <label className="mb-3 block text-xs sm:text-sm font-semibold text-gray-700">
+                <label className="mb-3 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Body Shape (Optional)
                 </label>
                 <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-5">
@@ -529,14 +529,14 @@ export default function SignUpPage() {
                       type="button"
                       onClick={() => setBodyShape(shape.id)}
                       className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${bodyShape === shape.id
-                        ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
-                        : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
+                        ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 dark:from-emerald-900/40 dark:to-yellow-900/40 shadow-md scale-105"
+                        : "border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:border-emerald-300 dark:hover:border-emerald-500/50 hover:shadow-lg dark:hover:bg-slate-700 hover:-translate-y-0.5"
                         }`}
                     >
                       <div className="scale-90 sm:scale-100">
                         {shape.icon}
                       </div>
-                      <span className="text-xs font-semibold text-gray-900 text-center leading-tight">
+                      <span className={`text-xs font-semibold text-center leading-tight ${bodyShape === shape.id ? "text-gray-900 dark:text-white" : "text-gray-900 dark:text-gray-300"}`}>
                         {shape.name}
                       </span>
                     </button>
@@ -546,7 +546,7 @@ export default function SignUpPage() {
 
               {/* Skin Tone */}
               <div>
-                <label className="mb-3 block text-xs sm:text-sm font-semibold text-gray-700">
+                <label className="mb-3 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Skin Tone (Optional)
                 </label>
                 <div className="grid grid-cols-3 gap-2 sm:gap-3 sm:grid-cols-5">
@@ -556,15 +556,15 @@ export default function SignUpPage() {
                       type="button"
                       onClick={() => setSkinTone(tone.id)}
                       className={`flex flex-col items-center justify-center gap-1.5 sm:gap-2 rounded-xl border-2 p-2.5 sm:p-3 transition-all duration-200 ${skinTone === tone.id
-                        ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 shadow-md scale-105"
-                        : "border-gray-200 bg-white hover:border-emerald-300 hover:shadow-lg hover:-translate-y-0.5"
+                        ? "border-emerald-500 bg-gradient-to-br from-emerald-50 to-yellow-50 dark:from-emerald-900/40 dark:to-yellow-900/40 shadow-md scale-105"
+                        : "border-gray-200 dark:border-slate-600 bg-white dark:bg-slate-800 hover:border-emerald-300 dark:hover:border-emerald-500/50 hover:shadow-lg dark:hover:bg-slate-700 hover:-translate-y-0.5"
                         }`}
                     >
                       <div
-                        className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border-2 border-white shadow-md ring-2 ring-gray-200"
+                        className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border-2 border-white dark:border-slate-600 shadow-md ring-2 ring-gray-200 dark:ring-slate-700"
                         style={{ backgroundColor: tone.color }}
                       ></div>
-                      <span className="text-xs font-semibold text-gray-900">
+                      <span className={`text-xs font-semibold ${skinTone === tone.id ? "text-gray-900 dark:text-white" : "text-gray-900 dark:text-gray-300"}`}>
                         {tone.name}
                       </span>
                     </button>
@@ -574,13 +574,13 @@ export default function SignUpPage() {
 
               {/* Upload Photos */}
               <div>
-                <label className="mb-3 block text-xs sm:text-sm font-semibold text-gray-700">
+                <label className="mb-3 block text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Upload Your Photos (Optional)
                 </label>
                 <label
                   onDragOver={handleDragOver}
                   onDrop={handleDrop}
-                  className="group flex min-h-[120px] sm:min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-white p-4 sm:p-6 transition-all duration-200 hover:border-emerald-400 hover:bg-gradient-to-br hover:from-emerald-50/50 hover:to-yellow-50/50 hover:shadow-lg"
+                  className="group flex min-h-[120px] sm:min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800/30 p-4 sm:p-6 transition-all duration-200 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-gradient-to-br hover:from-emerald-50/50 hover:to-yellow-50/50 dark:hover:from-emerald-900/10 dark:hover:to-yellow-900/10 hover:shadow-lg"
                 >
                   <input
                     type="file"
@@ -591,7 +591,7 @@ export default function SignUpPage() {
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity"></div>
                     <svg
-                      className="relative mb-2 sm:mb-3 h-10 w-10 sm:h-12 sm:w-12 text-gray-400 group-hover:text-emerald-500 transition-colors"
+                      className="relative mb-2 sm:mb-3 h-10 w-10 sm:h-12 sm:w-12 text-gray-400 dark:text-slate-500 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -610,17 +610,17 @@ export default function SignUpPage() {
                       />
                     </svg>
                   </div>
-                  <p className="text-xs sm:text-sm font-semibold text-gray-700 text-center group-hover:text-emerald-600 transition-colors">
+                  <p className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 text-center group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                     Click to upload or drag and drop
                   </p>
-                  <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 10MB</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">PNG, JPG up to 10MB</p>
                   {uploadedPhotos.length > 0 && (
-                    <div className="mt-3 flex items-center justify-between w-full max-w-[250px] px-3 py-1.5 rounded-full bg-emerald-100 border border-emerald-200">
+                    <div className="mt-3 flex items-center justify-between w-full max-w-[250px] px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 border border-emerald-200 dark:border-emerald-700/50">
                       <div className="flex items-center gap-2 overflow-hidden">
-                        <svg className="h-4 w-4 text-emerald-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <p className="text-xs font-semibold text-emerald-700 truncate">
+                        <p className="text-xs font-semibold text-emerald-700 dark:text-emerald-300 truncate">
                           {uploadedPhotos[0].name}
                         </p>
                       </div>
@@ -631,7 +631,7 @@ export default function SignUpPage() {
                           e.stopPropagation();
                           handleRemovePhoto();
                         }}
-                        className="p-1 rounded-full hover:bg-emerald-200 text-emerald-600 transition-colors"
+                        className="p-1 rounded-full hover:bg-emerald-200 dark:hover:bg-emerald-800 text-emerald-600 dark:text-emerald-400 transition-colors"
                         title="Remove photo"
                       >
                         <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -652,20 +652,20 @@ export default function SignUpPage() {
                 type="checkbox"
                 checked={agreeToTerms}
                 onChange={(e) => setAgreeToTerms(e.target.checked)}
-                className="mt-0.5 sm:mt-1 h-4 w-4 rounded-md border-2 border-gray-300 text-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all cursor-pointer"
+                className="mt-0.5 sm:mt-1 h-4 w-4 rounded-md border-2 border-gray-300 dark:border-slate-600 text-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:ring-offset-slate-900 transition-all cursor-pointer"
               />
-              <span className="text-xs sm:text-sm text-gray-700">
+              <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
                 I agree to the{" "}
                 <Link
                   href="/terms"
-                  className="font-semibold text-emerald-600 hover:text-emerald-700 hover:underline transition-all"
+                  className="font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:underline transition-all"
                 >
                   Terms & Conditions
                 </Link>{" "}
                 and{" "}
                 <Link
                   href="/privacy"
-                  className="font-semibold text-emerald-600 hover:text-emerald-700 hover:underline transition-all"
+                  className="font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:underline transition-all"
                 >
                   Privacy Policy
                 </Link>
@@ -675,26 +675,26 @@ export default function SignUpPage() {
 
           {/* Error Message */}
           {error && (
-            <div className="mb-5 rounded-xl bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 p-4 animate-shake">
+            <div className="mb-5 rounded-xl bg-gradient-to-r from-red-50 to-rose-50 dark:from-red-900/20 dark:to-rose-900/20 border-2 border-red-200 dark:border-red-800/30 p-4 animate-shake">
               <div className="flex items-start gap-3">
-                <svg className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-6 w-6 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p className="text-sm font-semibold text-red-800">{error}</p>
+                <p className="text-sm font-semibold text-red-800 dark:text-red-200">{error}</p>
               </div>
             </div>
           )}
 
           {/* Success Message */}
           {successMessage && (
-            <div className="mb-5 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 border-2 border-emerald-200 p-4 animate-fade-in">
+            <div className="mb-5 rounded-xl bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border-2 border-emerald-200 dark:border-emerald-800/30 p-4 animate-fade-in">
               <div className="flex items-start gap-3">
-                <svg className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-6 w-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <p className="text-sm font-semibold text-emerald-800">{successMessage}</p>
-                  <p className="mt-1 text-xs text-emerald-600">Redirecting to login...</p>
+                  <p className="text-sm font-semibold text-emerald-800 dark:text-emerald-200">{successMessage}</p>
+                  <p className="mt-1 text-xs text-emerald-600 dark:text-emerald-400">Redirecting to login...</p>
                 </div>
               </div>
             </div>
@@ -702,16 +702,16 @@ export default function SignUpPage() {
 
           {/* AI Insights Display */}
           {clipInsights && (
-            <div className="mb-5 rounded-xl bg-gradient-to-r from-yellow-50 to-amber-50 border-2 border-yellow-200 p-4 animate-fade-in">
-              <h4 className="text-sm font-bold text-yellow-800 mb-2 flex items-center gap-2">
+            <div className="mb-5 rounded-xl bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 border-2 border-yellow-200 dark:border-yellow-700/30 p-4 animate-fade-in">
+              <h4 className="text-sm font-bold text-yellow-800 dark:text-yellow-200 mb-2 flex items-center gap-2">
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
                 AI Style Analysis
               </h4>
-              <p className="text-xs text-yellow-700">
+              <p className="text-xs text-yellow-700 dark:text-yellow-300">
                 Detected: <span className="font-bold capitalize">{clipInsights.top_label}</span>
-                <span className="ml-2 text-yellow-600">({Math.round(clipInsights.top_confidence * 100)}% confidence)</span>
+                <span className="ml-2 text-yellow-600 dark:text-yellow-400">({Math.round(clipInsights.top_confidence * 100)}% confidence)</span>
               </p>
             </div>
           )}
@@ -722,7 +722,7 @@ export default function SignUpPage() {
             disabled={!agreeToTerms || !fullName || !email || !password || !gender || isLoading}
             className="mb-3 sm:mb-4 w-full relative group rounded-xl py-3 sm:py-4 text-base sm:text-lg font-bold text-white transition-all duration-300 disabled:cursor-not-allowed overflow-hidden"
           >
-            <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-yellow-500 transition-all duration-300 ${!agreeToTerms || !fullName || !email || !password || !gender || isLoading ? 'opacity-40' : 'group-hover:scale-105'}`}></div>
+            <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 via-emerald-500 to-yellow-500 dark:from-emerald-600 dark:to-yellow-600 transition-all duration-300 ${!agreeToTerms || !fullName || !email || !password || !gender || isLoading ? 'opacity-40' : 'group-hover:scale-105'}`}></div>
             <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative flex items-center justify-center gap-2">
               {isLoading ? (
@@ -756,11 +756,11 @@ export default function SignUpPage() {
 
           {/* Login Link */}
           <div className="text-center">
-            <p className="text-xs sm:text-sm text-gray-600">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               Already have an account?{" "}
               <Link
                 href="/signin"
-                className="font-bold text-transparent bg-gradient-to-r from-emerald-600 to-yellow-600 bg-clip-text hover:from-emerald-500 hover:to-yellow-500 transition-all"
+                className="font-bold text-transparent bg-gradient-to-r from-emerald-600 to-yellow-600 dark:from-emerald-400 dark:to-yellow-400 bg-clip-text hover:from-emerald-500 hover:to-yellow-500 transition-all"
               >
                 Sign In →
               </Link>
@@ -771,7 +771,7 @@ export default function SignUpPage() {
         {/* Footer Note */}
         <div className="mt-6 sm:mt-8 text-center space-y-4 animate-fade-in">
           <div className="flex items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm flex-wrap">
-            <p className="flex items-center gap-2 text-gray-600">
+            <p className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
               <svg
                 className="h-4 w-4 sm:h-5 sm:w-5 text-emerald-500"
                 fill="none"
@@ -787,7 +787,7 @@ export default function SignUpPage() {
               </svg>
               <span className="font-medium">Secure & Private</span>
             </p>
-            <p className="flex items-center gap-2 text-gray-600">
+            <p className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
               <svg
                 className="h-4 w-4 sm:h-5 sm:w-5 text-yellow-500"
                 fill="none"
