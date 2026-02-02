@@ -208,34 +208,41 @@ export default function MyWardrobePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-600 to-yellow-400 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white/95 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/20 text-center relative overflow-hidden">
-        {/* Background Decorative Element */}
-        <div className="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
+    <div className="min-h-screen bg-gradient-to-br from-emerald-600 to-yellow-400 dark:from-gray-950 dark:via-slate-900 dark:to-emerald-950 flex items-center justify-center p-4 relative overflow-hidden transition-colors duration-500">
+      {/* Animated Gradient Blobs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-emerald-300 dark:bg-emerald-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob"></div>
+        <div className="absolute top-0 -right-4 w-96 h-96 bg-yellow-300 dark:bg-purple-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-rose-300 dark:bg-rose-500/40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-50 animate-blob animation-delay-4000"></div>
+      </div>
+
+      <div className="max-w-md w-full bg-white/95 dark:bg-slate-900/60 backdrop-blur-md rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/20 dark:border-slate-700/50 text-center relative overflow-hidden transition-colors duration-300 z-10">
+        {/* Background Decorative Element - Adjusted for Dark Mode */}
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-yellow-400/20 dark:bg-yellow-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-400/20 dark:bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
 
         <div className="relative z-10">
-          <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-500 text-white mb-8 shadow-xl transform hover:rotate-12 transition-transform duration-300">
+          <div className="inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-500 dark:from-emerald-500 dark:to-emerald-700 text-white mb-8 shadow-xl transform hover:rotate-12 transition-transform duration-300">
             <svg className="h-10 w-10 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
             </svg>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mb-4 tracking-tight">
             My Wardrobe
           </h1>
 
-          <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-700 text-sm font-bold uppercase tracking-widest mb-6">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800/30 text-emerald-700 dark:text-emerald-300 text-sm font-bold uppercase tracking-widest mb-6">
             Coming Soon
           </div>
 
-          <p className="text-gray-600 mb-10 leading-relaxed">
+          <p className="text-gray-600 dark:text-gray-300 mb-10 leading-relaxed">
             We're putting the finishing touches on your personal AI closet. Soon you'll be able to organize, categorize, and browse your entire collection with ease!
           </p>
 
           <Link
             href="/profile"
-            className="group flex items-center justify-center gap-2 w-full rounded-2xl bg-emerald-600 py-4 text-center text-base font-bold text-white hover:bg-emerald-700 transition-all shadow-lg hover:shadow-emerald-600/30 active:scale-[0.98]"
+            className="group flex items-center justify-center gap-2 w-full rounded-2xl bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-600 dark:hover:bg-emerald-500 py-4 text-center text-base font-bold text-white transition-all shadow-lg hover:shadow-emerald-600/30 active:scale-[0.98]"
           >
             <span>Back to Profile</span>
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
